@@ -32,7 +32,5 @@ public class Position {
         }
         GameBoard.board[GameBoard.hole] = GameBoard.board[pos];
         GameBoard.board[GameBoard.hole = pos] = 0;
-
     }
-
 }

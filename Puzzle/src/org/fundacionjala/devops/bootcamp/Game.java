@@ -1,8 +1,9 @@
 package org.fundacionjala.devops.bootcamp;
 
-public class Main {
+public class Game {
 
     public static void main(String[] args) {
-	// write your code here
+        SlidePuzzle puzzle = new SlidePuzzle();
+        puzzle.run();
     }
 }

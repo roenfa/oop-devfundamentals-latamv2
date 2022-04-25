@@ -1,9 +1,15 @@
 package org.fundacionjala.devops.bootcamp;
 
+import org.fundacionjala.devops.bootcamp.Move.MoveEast;
+import org.fundacionjala.devops.bootcamp.Move.MoveNorth;
+import org.fundacionjala.devops.bootcamp.Move.MoveSouth;
+import org.fundacionjala.devops.bootcamp.Move.MoveWest;
+
 public class Movement {
 
     private Position position;
     private String direction;
+    private String movementStorage;
 
     public Movement(Position position, String direction) {
         this.position = position;
@@ -101,55 +107,18 @@ public class Movement {
     public int moveZero(int[][] board, String movement) {
         String holePosition = findZero(board);
         if(isValidMovement(holePosition, movement)) {
-            switch (movement) {
-                case "N":
-                    //Move the zero to the north:
-                    for (int i = 0; i < board.length; i++) {
-                        for (int j = 0; j < board[i].length; j++) {
-                            if (board[i][j] == 0) {
-                                board[i][j] = board[i - 1][j];
-                                board[i - 1][j] = 0;
-                                return 1;
-                            }
-                        }
-                    }
-                    break;
-                case "S":
-                    //Move the zero to the south:
-                    for (int i = 0; i < board.length; i++) {
-                        for (int j = 0; j < board[i].length; j++) {
-                            if (board[i][j] == 0) {
-                                board[i][j] = board[i + 1][j];
-                                board[i + 1][j] = 0;
-                                return 1;
-                            }
-                        }
-                    }
-                    break;
-                case "E":
-                    //Move the zero to the east:
-                    for (int i = 0; i < board.length; i++) {
-                        for (int j = 0; j < board[i].length; j++) {
-                            if (board[i][j] == 0) {
-                                board[i][j] = board[i][j + 1];
-                                board[i][j + 1] = 0;
-                                return 1;
-                            }
-                        }
-                    }
-                    break;
-                case "O":
-                    //Move the zero to the west:
-                    for (int i = 0; i < board.length; i++) {
-                        for (int j = 0; j < board[i].length; j++) {
-                            if (board[i][j] == 0) {
-                                board[i][j] = board[i][j - 1];
-                                board[i][j - 1] = 0;
-                                return 1;
-                            }
-                        }
-                    }
-                    break;
+            if(movement.equals("N")){
+                MoveNorth N = new MoveNorth();
+                N.execute(board);
+            }else if(movement.equals("S")){
+                MoveSouth S = new MoveSouth();
+                S.execute(board);
+            }else if(movement.equals("E")){
+                MoveEast E = new MoveEast();
+                E.execute(board);
+            }else if(movement.equals("O")){
+                MoveWest O = new MoveWest();
+                O.execute(board);
             }
         }
         return 0;
@@ -173,5 +142,20 @@ public class Movement {
     public String toString() {
         return "Movement: " + position.toString() + " " + direction;
     }
+
+    public String randomMovement() {
+        String[] movements = {"N", "S", "E", "O"};
+        int random = (int) (Math.random() * movements.length);
+        return movements[random];
+    }
+
+    public void setMovementStorage(String userChoice) {
+        movementStorage += ","+ userChoice;
+    }
+
+    public String getMovementStorage() {
+        return movementStorage;
+    }
+
 }
 

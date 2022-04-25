@@ -24,17 +24,22 @@ public class SlidePuzzle {
         Movement movement = new Movement();
         Position position = new Position();
         position.setHolePosition(movement.findZero(prueba));
-        movement.posibleMovements(prueba);
-        //scanner.nextLine();
+
         String userChoice="";
         while(!userChoice.equals("q")) {
+            System.out.println("=======================");
+            movement.posibleMovements(prueba);
             System.out.println("=======================");
             System.out.println("Please enter your move:");
             System.out.println("NORTH: N, SOUTH: S, EAST: E, WEST: W; or press q to quit");
             System.out.println("=======================");
             userChoice = scanner.nextLine();
             movement.moveZero(prueba, userChoice);
+            movement.setMovementStorage(userChoice);
             puzzle.print();
+            String storedMovement = movement.getMovementStorage();
+            System.out.println("=======================");
+            System.out.println("You have made the following moves: " + storedMovement);
         };
 
     }

@@ -30,7 +30,8 @@ public class Position {
         if (!canMove(pos)) {
             throw new IllegalArgumentException("Illegal move");
         }
-        GameBoard.board[GameBoard.hole] = GameBoard.board[pos];
-        GameBoard.board[GameBoard.hole = pos] = 0;
+
+//        GameBoard.board[GameBoard.hole] = GameBoard.board[pos];
+//        GameBoard.board[GameBoard.hole = pos] = 0;
     }
 }

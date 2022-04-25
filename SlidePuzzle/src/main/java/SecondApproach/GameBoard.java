@@ -16,18 +16,18 @@ public class GameBoard {
         board = new int[size][size];
         System.out.println("\nGrid size selected: " + size + " x " + size);
         System.out.println(printBoard()); // LEO CAPO
-        shuffleBoard(3);
+//        shuffleBoard(2);
     }
 
     public void shuffleBoard(int moves) {
         Random rand = new Random();
         int[] tileOffsets = { -size, +size, -1, +1 };
         while (moves-- > 0) {
-            int tile;
-            do {
-                tile = hole + tileOffsets[rand.nextInt(4)];
-            } while (!Position.canMove(tile));
-            Position.move(tile);
+//            int tile;
+//            do {
+//                tile = hole + tileOffsets[rand.nextInt(4)];
+//            } while (!Position.canMove(tile));
+            Position.move(6);
         }
     }
 

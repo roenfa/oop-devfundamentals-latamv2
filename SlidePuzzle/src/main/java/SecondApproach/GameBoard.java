@@ -62,29 +62,29 @@ public class GameBoard {
 
     }
 
-    public boolean moveTile(int r, int c) {
-        return checkEmpty(r, c, -1, 0) || checkEmpty(r, c, 1, 0)
-                || checkEmpty(r, c, 0, -1) || checkEmpty(r, c, 0, 1);
-    }
-
-    private boolean checkEmpty(int r, int c, int rMove, int cMove) {
-        int rSide = r + rMove;
-        int cSide = c + cMove;
-        if (isLegalRowCol(rSide, cSide)
-                && board[rSide][cSide].isEmpty()) {
-            exchangeTiles(r, c, rSide, cSide);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isLegalRowCol(int r, int c) {
-        return r>=0 && r<rows && c>=0 && c<cols;
-    }
-
-    private void exchangeTiles(int r1, int c1, int r2, int c2) {
-        int[][] temp = board[r1][c1];
-        board[r1][c1] = board[r2][c2];
-        board[r2][c2] = temp;
-    }
+//    public boolean moveTile(int r, int c) {
+//        return checkEmpty(r, c, -1, 0) || checkEmpty(r, c, 1, 0)
+//                || checkEmpty(r, c, 0, -1) || checkEmpty(r, c, 0, 1);
+//    }
+//
+//    private boolean checkEmpty(int r, int c, int rMove, int cMove) {
+//        int rSide = r + rMove;
+//        int cSide = c + cMove;
+//        if (isLegalRowCol(rSide, cSide)
+//                && board[rSide][cSide].isEmpty()) {
+//            exchangeTiles(r, c, rSide, cSide);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    public boolean isLegalRowCol(int r, int c) {
+//        return r>=0 && r<rows && c>=0 && c<cols;
+//    }
+//
+//    private void exchangeTiles(int r1, int c1, int r2, int c2) {
+//        int[][] temp = board[r1][c1];
+//        board[r1][c1] = board[r2][c2];
+//        board[r2][c2] = temp;
+//    }
 }

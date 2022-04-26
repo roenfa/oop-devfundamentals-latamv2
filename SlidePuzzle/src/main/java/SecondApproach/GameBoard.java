@@ -43,10 +43,11 @@ public class GameBoard {
             }
             sb.append("\n");
         }
-        findHolePosition();
+        findHole();
         System.out.println(sb);
     }
-    public void findHolePosition() {
+
+    public void findHole() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] == 0) {
@@ -54,8 +55,8 @@ public class GameBoard {
                 }
             }
         }
-
     }
+
     public void resetBoard(){
 
     }

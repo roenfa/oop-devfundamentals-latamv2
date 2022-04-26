@@ -6,6 +6,7 @@ public class GameBoard {
     Scanner sc = new Scanner(System.in);
     public static int[][] board;
     public static int size;
+    private Position position;
     static int hole = 0;
     int cnt = 1;
 
@@ -16,32 +17,7 @@ public class GameBoard {
         board = new int[size][size];
         System.out.println("\nGrid size selected: " + size + " x " + size);
         System.out.println(printBoard()); // LEO CAPO
-//        shuffleBoard(2);
     }
-
-    public void shuffleBoard(int moves) {
-        Random rand = new Random();
-        int[] tileOffsets = { -size, +size, -1, +1 };
-        while (moves-- > 0) {
-//            int tile;
-//            do {
-//                tile = hole + tileOffsets[rand.nextInt(4)];
-//            } while (!Position.canMove(tile));
-            Position.move(6);
-        }
-    }
-
-    //Approach Joaco
-//    public static void shuffleBoard(int[][] board) {
-//        List<Integer> list = new ArrayList<>();
-//        for (int i : board) {
-//            list.add(i);
-//        }
-//        Collections.shuffle(list);
-//        for (int i = 0; i < list.size(); i++) {
-//            board[i] = list.get(i);
-//        }
-//    }
 
     public String printBoard(){
         StringBuilder sb = new StringBuilder(size * size * 4);
@@ -56,6 +32,18 @@ public class GameBoard {
         }
         return sb.toString();
     }
+
+    //Approach Joaco
+//    public static void shuffleBoard(int[][] board) {
+//        List<Integer> list = new ArrayList<>();
+//        for (int i : board) {
+//            list.add(i);
+//        }
+//        Collections.shuffle(list);
+//        for (int i = 0; i < list.size(); i++) {
+//            board[i] = list.get(i);
+//        }
+//    }
 
     public void resetBoard(){
         createBoard();

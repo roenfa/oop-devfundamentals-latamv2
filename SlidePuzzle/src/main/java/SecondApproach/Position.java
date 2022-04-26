@@ -1,37 +1,27 @@
 package SecondApproach;
 
 public class Position {
-//    public int row;
-//    public int col;
-//
-//    void position() {
-//
-//    }
+    private int x;
+    private int y;
 
-    public static boolean canMove(int pos) {
-        if (pos < 0 || pos >= GameBoard.size * GameBoard.size) {
-            return false;
-        }
-        int diff = GameBoard.hole - pos;
-        if (diff == -1) {
-            return pos % GameBoard.size != 0;
-        } else if (diff == +1) {
-            return GameBoard.hole % GameBoard.size != 0;
-        } else {
-            return Math.abs(diff) == GameBoard.size;
-        }
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    /**
-     * Move the tile at the specified position into the neighboring hole (i.e.
-     * move the hole to the specified position).
-     */
-    public static void move(int pos) {
-        if (!canMove(pos)) {
-            throw new IllegalArgumentException("Illegal move");
-        }
+    public int getX() {
+        return x;
+    }
 
-//        GameBoard.board[GameBoard.hole] = GameBoard.board[pos];
-//        GameBoard.board[GameBoard.hole = pos] = 0;
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

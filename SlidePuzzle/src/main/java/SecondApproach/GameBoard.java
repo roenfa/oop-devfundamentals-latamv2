@@ -67,12 +67,12 @@ public class GameBoard {
                 || checkEmpty(r, c, 0, -1) || checkEmpty(r, c, 0, 1);
     }
 
-    private boolean checkEmpty(int r, int c, int rdelta, int cdelta) {
-        int rNeighbor = r + rdelta;
-        int cNeighbor = c + cdelta;
-        if (isLegalRowCol(rNeighbor, cNeighbor)
-                && board[rNeighbor][cNeighbor].isEmpty()) {
-            exchangeTiles(r, c, rNeighbor, cNeighbor);
+    private boolean checkEmpty(int r, int c, int rMove, int cMove) {
+        int rSide = r + rMove;
+        int cSide = c + cMove;
+        if (isLegalRowCol(rSide, cSide)
+                && board[rSide][cSide].isEmpty()) {
+            exchangeTiles(r, c, rSide, cSide);
             return true;
         }
         return false;

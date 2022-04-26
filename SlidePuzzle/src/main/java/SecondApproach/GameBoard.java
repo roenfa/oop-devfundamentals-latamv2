@@ -10,14 +10,6 @@ public class GameBoard {
     static int hole = 0;
     int cnt = 1;
 
-    public int[][] getBoard() {
-        return board;
-    }
-
-    public void setBoard(int[][] board) {
-        this.board = board;
-    }
-
     public void createBoard(){
         System.out.println("Please, type desired tile grid size (e.g. 4, to create 4x4 tile)");
         size = Integer.parseInt(sc.nextLine());

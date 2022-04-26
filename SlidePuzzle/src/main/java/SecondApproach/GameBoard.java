@@ -21,7 +21,7 @@ public class GameBoard {
                 cnt++;
             }
         }
-        System.out.println("Shuffling "+ size + " x " + size + " board\n");
+        System.out.println("Shuffling "+ size + " x " + size + " board");
         shuffle(board);
     }
 
@@ -43,7 +43,18 @@ public class GameBoard {
             }
             sb.append("\n");
         }
+        findHolePosition();
         System.out.println(sb);
+    }
+    public void findHolePosition() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] == 0) {
+                    System.out.println("Hole position: Row= " + (i+1) + " Col= " + (j+1) +"\n");
+                }
+            }
+        }
+
     }
     public void resetBoard(){
 

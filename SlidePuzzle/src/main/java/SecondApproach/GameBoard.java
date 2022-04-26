@@ -5,6 +5,7 @@ import java.util.*;
 public class GameBoard {
     Scanner sc = new Scanner(System.in);
     public int[][] board;
+
     public static int size;
     private Position position;
     static int hole = 0;
@@ -21,7 +22,7 @@ public class GameBoard {
                 cnt++;
             }
         }
-        System.out.println("Shuffling "+ size + " x " + size + " board");
+        System.out.println("Shuffling "+ size + " x " + size + " board\n");
         shuffle(board);
         findHole();
     }
@@ -59,5 +60,31 @@ public class GameBoard {
 
     public void resetBoard(){
 
+    }
+
+    public boolean moveTile(int r, int c) {
+        return checkEmpty(r, c, -1, 0) || checkEmpty(r, c, 1, 0)
+                || checkEmpty(r, c, 0, -1) || checkEmpty(r, c, 0, 1);
+    }
+
+    private boolean checkEmpty(int r, int c, int rdelta, int cdelta) {
+        int rNeighbor = r + rdelta;
+        int cNeighbor = c + cdelta;
+        if (isLegalRowCol(rNeighbor, cNeighbor)
+                && board[rNeighbor][cNeighbor].isEmpty()) {
+            exchangeTiles(r, c, rNeighbor, cNeighbor);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isLegalRowCol(int r, int c) {
+        return r>=0 && r<rows && c>=0 && c<cols;
+    }
+
+    private void exchangeTiles(int r1, int c1, int r2, int c2) {
+        int[][] temp = board[r1][c1];
+        board[r1][c1] = board[r2][c2];
+        board[r2][c2] = temp;
     }
 }

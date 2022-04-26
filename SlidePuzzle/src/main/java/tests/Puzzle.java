@@ -63,7 +63,9 @@ public class Puzzle {
         do{
             tmp = scanner.nextLine().toUpperCase();
             System.out.print(" ");
-            if(tmp.length() != 1) key = 'X';
+            if(tmp.length() != 1) {
+                key = 'X';
+            }
             else key = tmp.charAt(0);
         }while(key!='W' && key!='A' && key!='S' && key!='D');
         System.out.println();

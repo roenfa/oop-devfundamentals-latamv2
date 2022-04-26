@@ -2,9 +2,7 @@ import java.util.*;
 
 public class Table {
 
-    Scanner sc = new Scanner(System.in);
-
-    private int limit = 1;
+    private final int limit;
     private int[][] matriz;
     private Hole hole;
 
@@ -70,22 +68,6 @@ public class Table {
         }
     }
 
-    public void setRandomMovements(int movements) {
-        Movement movement = new Movement();
-        Random random = new Random();
-        for (int i = 0; i < movements; i++) {
-            List<String> possibles= movement.possibleMovements(this);
-            int index = random.nextInt(possibles.size());
-            String movementString = possibles.get(index);
-            movement.move(this, movementString);
-        }
-        movement.getMovementStorage().printMovements();
-    }
-
-    public int getValue(int x, int y){
-        return matriz[x][y];
-    }
-
     public int[][] getMatriz() {
         return matriz;
     }
@@ -100,10 +82,6 @@ public class Table {
 
     public Hole getHole() {
         return hole;
-    }
-
-    public void setHole(Hole hole) {
-        this.hole = hole;
     }
 
     public void switchPositions(Position holePosition, Position valueToSwitch) {

@@ -1,29 +1,19 @@
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Movement {
 
-    private String command;
+    private List<Position> movements;
     private Position movement;
-    private MovementStorage movementStorage;
 
     public Movement() {
-        this.movementStorage = new MovementStorage();
+        this.movements = new ArrayList<>();
     }
 
-    public Movement(String command) {
-        this.command = command;
-    }
-
-    public String getCommand() {
-        return command;
-    }
-
-    public void setCommand(String command) {
-        this.command = command;
+    public void addMovement(Position movement) {
+        this.movements.add(movement);
     }
 
     public List<String> possibleMovements(Table table) {
@@ -55,7 +45,7 @@ public class Movement {
             Position valueToSwitch = new Position(holePosition.getRow() - 1, holePosition.getColumn());
             table.switchPositions(holePosition, valueToSwitch);
             setMovement(valueToSwitch);
-            movementStorage.addMovement(valueToSwitch);
+            movements.add(valueToSwitch);
             } else {
                 System.out.println("You can't move up");
             }
@@ -65,7 +55,7 @@ public class Movement {
                 Position valueToSwitch = new Position(holePosition.getRow() + 1, holePosition.getColumn());
                 table.switchPositions(holePosition, valueToSwitch);
                 setMovement(valueToSwitch);
-                movementStorage.addMovement(valueToSwitch);
+                movements.add(valueToSwitch);
             } else {
                 System.out.println("You can't move down");
             }
@@ -75,7 +65,7 @@ public class Movement {
                 Position valueToSwitch = new Position(holePosition.getRow(), holePosition.getColumn() - 1);
                 table.switchPositions(holePosition, valueToSwitch);
                 setMovement(valueToSwitch);
-                movementStorage.addMovement(valueToSwitch);
+                movements.add(valueToSwitch);
             } else {
                 System.out.println("You can't move left");
             }
@@ -85,19 +75,30 @@ public class Movement {
                 Position valueToSwitch = new Position(holePosition.getRow(), holePosition.getColumn() + 1);
                 table.switchPositions(holePosition, valueToSwitch);
                 setMovement(valueToSwitch);
-                movementStorage.addMovement(valueToSwitch);
+                movements.add(valueToSwitch);
             } else {
                 System.out.println("You can't move right");
             }
         }
     }
 
-    public MovementStorage getMovementStorage() {
-        return movementStorage;
+    public void setRandomMovements(int movements, Table table) {
+        Random random = new Random();
+        for (int i = 0; i < movements; i++) {
+            List<String> possibles= possibleMovements(table);
+            int index = random.nextInt(possibles.size());
+            String movementString = possibles.get(index);
+            move(table, movementString);
+        }
     }
 
-    public void setMovementStorage(MovementStorage movementStorage) {
-        this.movementStorage = movementStorage;
+    public void printMovements() {
+        Collections.reverse(movements);
+        int i = movements.size();
+        for (Position movement : movements) {
+            System.out.println(i + ". " + movement.toString());
+            i--;
+        }
     }
 
     public void setMovement(Position movement) {
@@ -107,58 +108,4 @@ public class Movement {
     public Position getMovement() {
         return movement;
     }
-/*
-@Override
-    public void keyPressed(KeyEvent e) {
-        Position holePosition = table.getHole().getPosition();
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-        {
-          if(holePosition.getColumn() < table.getLimit() - 1){
-                Position valueToSwitch = new Position(holePosition.getRow(), holePosition.getColumn() + 1);
-                table.switchPositions(holePosition, valueToSwitch);
-                setMovement(valueToSwitch);
-           }
-                else
-
-            System.out.println("Cannot Move Right");
-    }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT)
-       {
-            if(holePosition.getColumn() > 0){
-                Position valueToSwitch = new Position(holePosition.getRow(), holePosition.getColumn() - 1);
-              table.switchPositions(holePosition, valueToSwitch);
-              setMovement(valueToSwitch);
-           }
-       else
-                System.out.println("Cannot Move Left");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN)
-                 {
-          if(holePosition.getRow() < table.getLimit() - 1){
-                   Position valueToSwitch = new Position(holePosition.getRow() + 1, holePosition.getColumn());
-              table.switchPositions(holePosition, valueToSwitch);
-               setMovement(valueToSwitch);
-           }
-            else
-               System.out.println("Cannot Move Down");
-       }
-        if (e.getKeyCode() == KeyEvent.VK_UP)
-      {
-          if(holePosition.getRow() > 0){
-              Position valueToSwitch = new Position(holePosition.getRow() - 1, holePosition.getColumn());
-              table.switchPositions(holePosition, valueToSwitch);
-              setMovement(valueToSwitch);
-         }
-          else
-              System.out.println("Cannot Move Up");
-        }
-    }
-    @Override
-    public void keyTyped(KeyEvent e) {}
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
-
-
- */
 }

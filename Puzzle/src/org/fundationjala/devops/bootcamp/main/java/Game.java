@@ -13,7 +13,7 @@ public class Game {
         table.printTable();
 
 
-        setHoleInSpecificPosition(table);
+        setHoleInSpecificPosition(table, movement);
 
         play(table, movement);
 
@@ -33,61 +33,67 @@ public class Game {
     }
 
     private void play(Table table, Movement movement) {
-        String movementString = "";
+        String movementString;
         table.printTable();
         System.out.println("Hole " + table.getHole().getPosition());
         System.out.println("Possible movements:");
         movement.possibleMovements(table).forEach(System.out::println);
-        System.out.println("exit");
+        System.out.println("reset game (r)");
         System.out.println("history (h)");
+        System.out.println("exit");
         movementString = sc.nextLine();
         if (movementString.equals("exit")) {
             System.exit(0);
         } else if (movementString.equals("h")) {
-            getHistory(movement);
+            movement.printMovements();
             play(table, movement);
+        } else if (movementString.equals("r")) {
+            run();
         } else {
             movement.move(table, movementString);
             play(table, movement);
         }
     }
 
-    public void getHistory(Movement movement) {
-        System.out.println("Do you want to see the history of movements?\n1. Yes\n2. No");
-        int answer = sc.nextInt();
-        if (answer == 1) {
-            movement.getMovementStorage().printMovements();
-        } else if (answer == 2) {
-            System.out.println("Ok");
-        }   else {
-            System.out.println("Invalid answer");
-            getHistory(movement);
-        }
-    }
-
-    public void setHoleInSpecificPosition(Table table){
-        System.out.println("Do you want to set hole on any specific position?\nYou'll probably lose track of movements\n1. Yes\n2. No");
+    public void setHoleInSpecificPosition(Table table, Movement movement) {
+        System.out.println("""
+                Do you want to set hole on any specific position?
+                You'll probably lose track of movements
+                1. Yes
+                2. No""");
         int answer2 = sc.nextInt();
         if (answer2 == 1) {
             Position position = new Position();
             position.enterPosition();
-            if (position.getRow() > table.getLimit() || position.getColumn() > table.getLimit() || position.getRow() < 1 || position.getColumn() < 1) {
+            if (position.getRow() > table.getLimit() ||
+                    position.getColumn() > table.getLimit() ||
+                    position.getRow() < 0 ||
+                    position.getColumn() < 0) {
                 System.out.println("Invalid position");
-                setHoleInSpecificPosition(table);
+                setHoleInSpecificPosition(table, movement);
             } else {
                 table.switchPositions(table.getHole().getPosition(), position);
                 table.resetHole(table.getMatriz());
+                System.out.println("Do you want to also set movements from this position? (y/n)");
+                String answer3 = sc.next();
+                if (answer3.equals("y")) {
+                    System.out.println("Enter a number of random movements");
+                    int numberOfMovements = sc.nextInt();
+                    movement.setRandomMovements(numberOfMovements, table);
+                }
             }
         } else if (answer2 == 2) {
-            shuffleOrGetMovements(table);
+            shuffleOrGetMovements(table, movement);
         } else {
             System.out.println("Invalid answer");
-            setHoleInSpecificPosition(table);
+            setHoleInSpecificPosition(table, movement);
         }
     }
 
-    public void shuffleOrGetMovements(Table table){
-        System.out.println("Do you want to:\n1. Shuffle the table\n2. Set a number of random moves");
+    public void shuffleOrGetMovements(Table table, Movement movement) {
+        System.out.println("Do you want to:\n" +
+                "1. Shuffle the table\n" +
+                "2. Set a number of random moves");
         String answer = sc.next();
         if (answer.equals("1")) {
             table.shuffle(table.getMatriz());
@@ -95,14 +101,10 @@ public class Game {
         } else if (answer.equals("2")) {
             System.out.print("Enter number of movements: ");
             int movements = sc.nextInt();
-            table.setRandomMovements(movements);
+            movement.setRandomMovements(movements, table);
         } else {
             System.out.println("Invalid answer");
-            shuffleOrGetMovements(table);
+            shuffleOrGetMovements(table, movement);
         }
     }
-
-
-
-
 }

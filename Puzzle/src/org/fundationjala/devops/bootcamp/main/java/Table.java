@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Table {
 
@@ -70,6 +71,18 @@ public class Table {
         }
     }
 
+    public void setRandomMovements(int movements) {
+        Movement movement = new Movement();
+        Random random = new Random();
+        for (int i = 0; i < movements; i++) {
+            List<String> possibles= movement.possibleMovements(this);
+            int index = random.nextInt(possibles.size());
+            String movementString = possibles.get(index);
+            movement.move(this, movementString);
+        }
+        movement.getMovementStorage().printMovements();
+    }
+
     public int getValue(int x, int y){
         return matriz[x][y];
     }
@@ -95,9 +108,12 @@ public class Table {
     }
 
     public void switchPositions(Position holePosition, Position valueToSwitch) {
+        //Value to switch
         int value = matriz[valueToSwitch.getRow()][valueToSwitch.getColumn()];
-        matriz[valueToSwitch.getRow()][valueToSwitch.getColumn()] = hole.getValue();
+        //New value position
         matriz[holePosition.getRow()][holePosition.getColumn()] = value;
+        //New hole position
+        matriz[valueToSwitch.getRow()][valueToSwitch.getColumn()] = hole.getValue();
         hole.setPosition(valueToSwitch);
     }
 }

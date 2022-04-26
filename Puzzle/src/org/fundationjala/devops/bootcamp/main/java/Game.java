@@ -8,37 +8,47 @@ public class Game {
         int limit = sc.nextInt();
         Table table = new Table(limit);
         Movement movement = new Movement();
-        MovementStorage movementStorage = new MovementStorage();
+
         System.out.println("Table created");
         table.printTable();
-        table.shuffle(table.getMatriz());
-        System.out.println("Shuffled table:");
+
+        System.out.println("Do you want to:\n1. Shuffle the table\n2. Set a number of random moves");
+        String answer = sc.next();
+        if (answer.equals("1")) {
+            table.shuffle(table.getMatriz());
+            System.out.println("Shuffled table:");
+        }
+        if (answer.equals("2")) {
+            System.out.print("Enter number of movements: ");
+            int movements = sc.nextInt();
+            table.setRandomMovements(movements);
+        }
+
+        //Frame f = new Frame("Demo");
+        //f.setLayout(new FlowLayout());
+        //f.setSize(200, 200);
+        //Label l = new Label();
+        //l.setText("This is a Game");
+        //f.add(l);
+        //f.setVisible(true);
+
+        //adding the key listener
+        //Movement movement= new Movement();
+        //f.addKeyListener(movement);
+
+        //while (movement != ) {}
+
         String movementString = "";
-        do {
+        while (!movementString.equals("exit")){
             table.printTable();
             System.out.println("Hole " + table.getHole().getPosition());
             System.out.println("Possible movements:");
-            movement.possibleMovements(table);
+            movement.possibleMovements(table).forEach(System.out::println);
             System.out.println("exit");
             movementString = sc.nextLine();
             movement.move(table, movementString);
-            movementStorage.addMovement(movement.getMovement());
-        }while (!movementString.equals("exit"));
-        movementStorage.printMovements();
-    }
-    public boolean isSolved(Table table) {
-        Table solvedTable = new Table(table.getLimit());
-        System.out.println("original table:");
-        solvedTable.printTable();
-        System.out.println("table:");
-        table.printTable();
-        for (int i = 0; i < table.getLimit(); i++) {
-            for (int j = 0; j < table.getLimit(); j++) {
-                if (table.getMatriz()[i][j] != solvedTable.getMatriz()[i][j]) {
-                    return false;
-                }
-            }
         }
-        return true;
+        movement.getMovementStorage().printMovements();
     }
+
 }

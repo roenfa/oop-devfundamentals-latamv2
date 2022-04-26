@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MovementStorage {
 
-    private List<Position> movements = new ArrayList<>();
+    private List<Position> movements;
 
     public MovementStorage() {
         this.movements = new ArrayList<>();
@@ -12,6 +12,10 @@ public class MovementStorage {
 
     public List<Position> getMovements() {
         return movements;
+    }
+
+    public void setMovements(List<Position> movements) {
+        this.movements = movements;
     }
 
     public void addMovement(Position movement) {

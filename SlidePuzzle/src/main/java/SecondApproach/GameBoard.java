@@ -11,12 +11,12 @@ public class GameBoard {
     int cnt = 1;
 
     public void createBoard(){
-        System.out.println("Board Creation: Please, type desired tile grid size (e.g. 4, to create 4x4 tile)");
+        System.out.println("Please, type desired tile grid size (e.g. 4, to create 4x4 tile)");
         size = Integer.parseInt(sc.nextLine());
 //        int size = sel * sel;
         board = new int[size][size];
         System.out.println("\nGrid size selected: " + size + " x " + size);
-        System.out.println(printBoard()); // LEO CAPO
+        System.out.println(printBoard());
     }
 
     public String printBoard(){
@@ -24,7 +24,7 @@ public class GameBoard {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 board[i][j] = cnt;
-                board[size-1][size-1] = 0; //Always return 0 on last index from array.
+                board[size-1][size-1] = hole; //Always return 0 on last index from array.
                 sb.append(String.format("%s", (board[i][j] == 0) ? "" : board[i][j])).append("\t");
                 cnt++;
             }

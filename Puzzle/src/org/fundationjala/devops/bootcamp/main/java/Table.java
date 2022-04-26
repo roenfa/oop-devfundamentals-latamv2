@@ -1,9 +1,8 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Table {
+
+    Scanner sc = new Scanner(System.in);
 
     private int limit = 1;
     private int[][] matriz;
@@ -116,4 +115,6 @@ public class Table {
         matriz[valueToSwitch.getRow()][valueToSwitch.getColumn()] = hole.getValue();
         hole.setPosition(valueToSwitch);
     }
+
+
 }

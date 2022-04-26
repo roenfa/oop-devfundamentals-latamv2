@@ -1,4 +1,4 @@
-package org.fundacionjala.devops.bootcamp;
+package org.fundacionjala.devops.bootcamp.Move;
 
 import java.util.HashMap;
 import java.util.Map;

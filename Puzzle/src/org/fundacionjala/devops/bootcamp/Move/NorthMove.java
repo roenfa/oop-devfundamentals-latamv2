@@ -1,6 +1,6 @@
 package org.fundacionjala.devops.bootcamp.Move;
 
-public class MoveNorth implements Command {
+public class NorthMove implements Command {
 
     @Override
     public int execute( int[][] matrix) {

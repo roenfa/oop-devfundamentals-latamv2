@@ -1,15 +1,9 @@
-package org.fundacionjala.devops.bootcamp;
-
-import org.fundacionjala.devops.bootcamp.Move.MoveEast;
-import org.fundacionjala.devops.bootcamp.Move.MoveNorth;
-import org.fundacionjala.devops.bootcamp.Move.MoveSouth;
-import org.fundacionjala.devops.bootcamp.Move.MoveWest;
+package org.fundacionjala.devops.bootcamp.Move;
 
 public class Movement {
 
     private Position position;
     private String direction;
-    private String movementStorage;
 
     public Movement(Position position, String direction) {
         this.position = position;
@@ -108,17 +102,21 @@ public class Movement {
         String holePosition = findZero(board);
         if(isValidMovement(holePosition, movement)) {
             if(movement.equals("N")){
-                MoveNorth N = new MoveNorth();
+                NorthMove N = new NorthMove();
                 N.execute(board);
+                return 1;
             }else if(movement.equals("S")){
-                MoveSouth S = new MoveSouth();
+                SouthMove S = new SouthMove();
                 S.execute(board);
+                return 1;
             }else if(movement.equals("E")){
-                MoveEast E = new MoveEast();
+                EastMove E = new EastMove();
                 E.execute(board);
+                return 1;
             }else if(movement.equals("O")){
-                MoveWest O = new MoveWest();
+                WestMove O = new WestMove();
                 O.execute(board);
+                return 1;
             }
         }
         return 0;
@@ -139,23 +137,19 @@ public class Movement {
 
     }
 
-    public String toString() {
-        return "Movement: " + position.toString() + " " + direction;
-    }
-
     public String randomMovement() {
         String[] movements = {"N", "S", "E", "O"};
         int random = (int) (Math.random() * movements.length);
         return movements[random];
     }
 
-    public void setMovementStorage(String userChoice) {
-        movementStorage += ","+ userChoice;
+    public String toString() {
+        return "Movement: " + position.toString() + " " + direction;
     }
 
-    public String getMovementStorage() {
-        return movementStorage;
-    }
+
+
+
 
 }
 

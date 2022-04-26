@@ -1,8 +1,12 @@
 package org.fundacionjala.devops.bootcamp;
 
+import org.fundacionjala.devops.bootcamp.Move.Movement;
+import org.fundacionjala.devops.bootcamp.Move.Position;
+import org.fundacionjala.devops.bootcamp.NormalBoard.Board;
+
 import java.util.Scanner;
 
-public class SlidePuzzle {
+public class UserMenu {
 
     public void run(){
         Scanner scanner = new Scanner(System.in);
@@ -35,11 +39,8 @@ public class SlidePuzzle {
             System.out.println("=======================");
             userChoice = scanner.nextLine();
             movement.moveZero(prueba, userChoice);
-            movement.setMovementStorage(userChoice);
             puzzle.print();
-            String storedMovement = movement.getMovementStorage();
             System.out.println("=======================");
-            System.out.println("You have made the following moves: " + storedMovement);
         };
 
     }

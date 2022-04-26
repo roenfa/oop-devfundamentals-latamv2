@@ -1,4 +1,4 @@
-package org.fundacionjala.devops.bootcamp;
+package org.fundacionjala.devops.bootcamp.NormalBoard;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ public class Board {
     public Board() {
     }
 
-    public void createBoard(int size){
+    public int[][] createBoard(int size){
         this.n=size;
         matrix=new int[size][size];
         for(int i=0;i<size;i++){
@@ -19,6 +19,7 @@ public class Board {
             }
         }
         matrix[size-1][size-1]=0;
+        return matrix;
     }
 
     //printing the board:

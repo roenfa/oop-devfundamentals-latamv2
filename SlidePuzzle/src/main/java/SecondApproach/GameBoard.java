@@ -23,6 +23,7 @@ public class GameBoard {
         }
         System.out.println("Shuffling "+ size + " x " + size + " board");
         shuffle(board);
+        findHole();
     }
 
     public void shuffle(int [][] board){
@@ -43,7 +44,6 @@ public class GameBoard {
             }
             sb.append("\n");
         }
-        findHole();
         System.out.println(sb);
     }
 

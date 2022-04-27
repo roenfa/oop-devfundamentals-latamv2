@@ -1,13 +1,12 @@
-package org.fundacionjala.devops.bootcamp.Movement;
+package org.fundacionjala.devops.bootcamp.KevinCardenas.Movement;
 
-import org.fundacionjala.devops.bootcamp.App.IBoard;
-import org.fundacionjala.devops.bootcamp.App.IOptionManager;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.App.IBoard;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.App.IOptionManager;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
-import java.util.stream.Stream;
 
 public class OptionManager implements IOptionManager {
     private Map<Integer,int[]> _nextMoves=new HashMap();
@@ -94,16 +93,9 @@ public class OptionManager implements IOptionManager {
         isGameCompleted();
     }
     public void isGameCompleted(){
-        if(Arrays.equals(_board.getFigure(),_board.getFigureCheck())){
+        if(Arrays.deepEquals(_board.getFigure(), _board.getFigureCheck())){
             System.out.println("Game is completed you can keep playing or use one of the options!");
         }
-        for (int i = 0; i < _board.getFigureCheck().length ; i++) {
-            for (int j = 0; j < _board.getFigureCheck()[0].length; j++) {
-                System.out.print(_board.getFigureCheck()[i][j]);
-            }
-
-        }
-
     }
 
 }

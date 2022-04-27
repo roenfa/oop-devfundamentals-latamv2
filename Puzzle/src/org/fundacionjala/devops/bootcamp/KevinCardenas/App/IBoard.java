@@ -1,9 +1,6 @@
-package org.fundacionjala.devops.bootcamp.App;
+package org.fundacionjala.devops.bootcamp.KevinCardenas.App;
 
-import org.fundacionjala.devops.bootcamp.Model.Position;
-
-import java.util.Arrays;
-import java.util.Collections;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Model.Position;
 
 public interface IBoard {
      int[][] getFigure();

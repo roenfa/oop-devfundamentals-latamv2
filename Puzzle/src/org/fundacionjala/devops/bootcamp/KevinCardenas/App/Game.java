@@ -1,10 +1,10 @@
-package org.fundacionjala.devops.bootcamp.App;
+package org.fundacionjala.devops.bootcamp.KevinCardenas.App;
 
-import org.fundacionjala.devops.bootcamp.Board.BoardImp;
-import org.fundacionjala.devops.bootcamp.Interfaz.InterfazImp;
-import org.fundacionjala.devops.bootcamp.Movement.CommandImp.CommandManager;
-import org.fundacionjala.devops.bootcamp.Movement.MenuManager;
-import org.fundacionjala.devops.bootcamp.Movement.OptionManager;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Board.BoardImp;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Interfaz.InterfazImp;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Movement.CommandImp.CommandManager;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Movement.MenuManager;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Movement.OptionManager;
 
 public class Game {
     private MenuManager _menuManager;

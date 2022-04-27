@@ -1,6 +1,6 @@
-package org.fundacionjala.devops.bootcamp.Movement.CommandImp;
+package org.fundacionjala.devops.bootcamp.KevinCardenas.Movement.CommandImp;
 
-import org.fundacionjala.devops.bootcamp.Movement.Command;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Movement.Command;
 
 public class ExitCommand implements Command {
 

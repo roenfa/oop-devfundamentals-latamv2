@@ -1,4 +1,4 @@
-package org.fundacionjala.devops.bootcamp.Model;
+package org.fundacionjala.devops.bootcamp.KevinCardenas.Model;
 
 public class Position {
     private int _x;

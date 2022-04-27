@@ -1,7 +1,7 @@
-package org.fundacionjala.devops.bootcamp.Board;
+package org.fundacionjala.devops.bootcamp.KevinCardenas.Board;
 
-import org.fundacionjala.devops.bootcamp.App.IBoard;
-import org.fundacionjala.devops.bootcamp.Model.Position;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.App.IBoard;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Model.Position;
 
 import java.util.Arrays;
 import java.util.Collections;

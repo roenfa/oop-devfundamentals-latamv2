@@ -1,6 +1,6 @@
-package org.fundacionjala.devops.bootcamp.Model;
+package org.fundacionjala.devops.bootcamp.KevinCardenas.Model;
 
-import org.fundacionjala.devops.bootcamp.Movement.Command;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Movement.Command;
 
 public class Menu {
     private String _name;

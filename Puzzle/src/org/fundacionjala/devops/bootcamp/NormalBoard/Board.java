@@ -20,6 +20,7 @@ public class Board {
         }
         matrix[size-1][size-1]=0;
         return matrix;
+
     }
 
     //printing the board:

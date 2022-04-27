@@ -1,26 +1,36 @@
 package org.fundacionjala.devops.bootcamp;
 
-import org.fundacionjala.devops.bootcamp.AsisstedBoard.AIBuilder;
-import org.fundacionjala.devops.bootcamp.History.MovementsHistory;
-import org.fundacionjala.devops.bootcamp.NormalBoard.Board;
+
+
+import org.fundacionjala.devops.bootcamp.AsisstedBoard.AiMenu;
+
+import java.util.Scanner;
 
 public class  Game {
 
     public static void main(String[] args) {
-        Board board = new Board();
-        AIBuilder aiBuilder = new AIBuilder();
-        int [][] prueba = board.createBoard(4);
-        aiBuilder.setUserZero(prueba,2,2);
-        System.out.println("**************************");
-        System.out.println("Board created with the Zero at 3,3:");
-        System.out.println("**************************");
-        board.print();
-        System.out.println("**************************");
-        aiBuilder.runRandomMovements(5);
-        System.out.println("Movements randomly made:");
-        MovementsHistory history = new MovementsHistory();
-        history.getMovementsOption();
-        board.print();
+        UserMenu menu = new UserMenu();
+        AiMenu aiMenu = new AiMenu();
+        int level=0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("=======================");
+        System.out.println("Welcome to SLIDE PUZZLE!");
+        System.out.println("=======================");
 
+        System.out.println("Please select the difficulty level:");
+        System.out.println("1. Easy");
+        System.out.println("2. Normal");
+        System.out.println("0. Exit Game");
+        System.out.println("=======================");
+        level = scanner.nextInt();
+        if(level ==1){
+            aiMenu.run();
+        }else if(level ==2){
+            menu.run();
+        }else if(level ==0){
+            System.out.println("=======================");
+            System.out.println("Thank you for playing!");
+            System.out.println("=======================");
+        }
     }
 }

@@ -4,6 +4,7 @@ public class Movement {
 
     private Position position;
     private String direction;
+    int size;
 
     public Movement(Position position, String direction) {
         this.position = position;
@@ -32,7 +33,7 @@ public class Movement {
 
 
     //Method to check if the movement is valid:
-    public boolean isValidMovement(String position, String direction) {
+    public boolean isValidMovement(String position, String direction,int size) {
         String[] positionArray = position.split(",");
         int row = Integer.parseInt(positionArray[0]);
         int column = Integer.parseInt(positionArray[1]);
@@ -44,14 +45,14 @@ public class Movement {
                 return false;
             }
         }else if(direction.equals("S")){
-            if(row == 3) {
+            if(row == size-1) {
                 System.out.println("XXXXXXXXXXXXXXXXXXX");
                 System.out.println("You can't go down!");
                 System.out.println("XXXXXXXXXXXXXXXXXXX");
                 return false;
             }
         }else if(direction.equals("E")){
-            if(column == 3) {
+            if(column == size-1) {
                 System.out.println("XXXXXXXXXXXXXXXXXXX");
                 System.out.println("You can't go right!");
                 System.out.println("XXXXXXXXXXXXXXXXXXX");
@@ -100,7 +101,8 @@ public class Movement {
     //Method to move the zero, that receive the board and the movement("N", "S", "E" or "O"):
     public int moveZero(int[][] board, String movement) {
         String holePosition = findZero(board);
-        if(isValidMovement(holePosition, movement)) {
+        size= board.length;
+        if(isValidMovement(holePosition, movement,size)) {
             if(movement.equals("N")){
                 NorthMove N = new NorthMove();
                 N.execute(board);
@@ -132,15 +134,40 @@ public class Movement {
                 }
             }
         }
-        //System.out.println("position of Zero is: "+position);
         return position;
-
     }
 
     public String randomMovement() {
         String[] movements = {"N", "S", "E", "O"};
         int random = (int) (Math.random() * movements.length);
         return movements[random];
+    }
+
+    public void rollBackBoard(int[][] board,String commands) {
+        String[] commandsArray = commands.split(" ");
+        for (int i = 0; i < commandsArray.length; i++) {
+            if(commandsArray[i].equals("N")){
+                System.out.println("-------------------------");
+                System.out.println("Rolling back N movement, moving South");
+                SouthMove S = new SouthMove();
+                S.execute(board);
+            }else if(commandsArray[i].equals("S")){
+                System.out.println("-------------------------");
+                System.out.println("Rolling back S movement, moving North");
+                NorthMove N = new NorthMove();
+                N.execute(board);
+            }else if(commandsArray[i].equals("E")){
+                System.out.println("-------------------------");
+                System.out.println("Rolling back E movement, moving West");
+                WestMove W = new WestMove();
+                W.execute(board);
+            }else if(commandsArray[i].equals("O")){
+                System.out.println("-------------------------");
+                System.out.println("Rolling back O movement, moving East");
+                EastMove E = new EastMove();
+                E.execute(board);
+            }
+        }
     }
 
     public String toString() {

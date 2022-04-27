@@ -2,7 +2,7 @@ package ThirdApproach;
 
 public class Puzzle {
     static int[][] puzzle;
-    static int size, x, y, slv;
+    static int size, x, y;
     public static int getSize() {
         return size;
     }
@@ -52,7 +52,6 @@ public class Puzzle {
             for(int j=0; j<size; j++){
                 if(puzzle[j][i] == 0) continue;
                 if(puzzle[j][i] != 1 + j*size + i) return false;
-                slv++;
             }
         }
         return true;

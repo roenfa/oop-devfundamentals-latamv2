@@ -24,29 +24,6 @@ public class InterfazImp implements IInterfaz {
             command=_menuManager.getMenus().stream().filter(a->a.getCode()== option).findFirst().orElseThrow(()-> new RuntimeException("Command not found")).getCommand();
             command.execute();
         }
-//        System.out.println("Set the size of the board");
-//        int var=_reader.nextInt();
-//        _board.buildBoard(var);
-//        System.out.println("Set the initial position");
-//        int x=_reader.nextInt();
-//        int y=_reader.nextInt();
-//        _board.posIni(x,y);
-//        Movement movement = new Movement(_board);
-//        _board.print();
-//        movement.randomMovements(3,0,0);
-//        _board.print();
-//        movement.printListOfMovementsDone();
-//        while(true){
-//            board.print();
-//            movement.printNextMoves();
-//            int move=fastReader.nextInt();
-//            movement.move(move);
-//        }
-//        board.suffle();
-//        movement.nextMoves();
-//        board.print();
-//        movement.printNextMoves();
-
     }
 
     @Override

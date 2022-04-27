@@ -12,7 +12,7 @@ public interface IBoard {
      void setPosition(Position position);
 
     void  buildBoard(int n);
-    void suffle();
+    void shuffle();
     void posIni(int i, int j);
     int[][] getFigureCheck();
 }

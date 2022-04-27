@@ -2,6 +2,7 @@ package org.fundacionjala.devops.bootcamp.KevinCardenas.Movement;
 
 import org.fundacionjala.devops.bootcamp.KevinCardenas.App.IBoard;
 import org.fundacionjala.devops.bootcamp.KevinCardenas.App.IOptionManager;
+import org.fundacionjala.devops.bootcamp.KevinCardenas.Movement.CommandImp.CommandManager;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ public class OptionManager implements IOptionManager {
     private Map<Integer,int[]> _nextMoves=new HashMap();
     private IBoard _board;
     private Stack<int[]> _listOfMovementsDone;
+
 
     public OptionManager(IBoard board) {
         _board = board;
@@ -64,6 +66,8 @@ public class OptionManager implements IOptionManager {
     }
     @Override
     public void printNextMoves(){
+        System.out.println("This are the other movements you can make ");
+        System.out.println("Type the number of any movement you want to make and press enter ");
         for (Map.Entry<Integer, int[]> var:_nextMoves.entrySet()) {
             if(var.getValue()!=null){
                 System.out.println(var.getKey()+": fila "+var.getValue()[0]+", columna "+var.getValue()[1]);
@@ -78,8 +82,11 @@ public class OptionManager implements IOptionManager {
     }
     @Override
     public void printOtherOptions(){
+        System.out.println("This are the other options you can make if you are stuck ");
+        System.out.println("Type the number of any command you want to make and press enter ");
         System.out.println("5 if you want to shuffle the board");
         System.out.println("6 if you are stuck and want to reset the board");
+        System.out.println("7 to close the program");
     }
     @Override
     public void move(int key){
@@ -94,7 +101,8 @@ public class OptionManager implements IOptionManager {
     }
     public void isGameCompleted(){
         if(Arrays.deepEquals(_board.getFigure(), _board.getFigureCheck())){
-            System.out.println("Game is completed you can keep playing or use one of the options!");
+            System.out.println("Game is completed!");
+            System.exit(0);
         }
     }
 

@@ -20,12 +20,18 @@ public class BoardImp implements IBoard {
         return _figure;
     }
     public void print(){
+        for (int i = 0; i <_figure[0].length ; i++) {
+            System.out.print("- ");
+        }
         System.out.println();
         for (int i = 0; i < _figure.length; i++) {
             for (int j = 0; j <_figure[0].length ; j++) {
                 System.out.print(_figure[i][j]+" ");
             }
             System.out.println();
+        }
+        for (int i = 0; i <_figure[0].length ; i++) {
+            System.out.print("- ");
         }
         System.out.println();
     }
@@ -57,7 +63,7 @@ public class BoardImp implements IBoard {
         }
         posIni(0,0);
     }
-    public void suffle(){
+    public void shuffle(){
         Collections.shuffle(Arrays.asList(_figure));
         for (int i = 0; i < _figure.length; i++) {
             for (int j = 0; j < _figure[0].length; j++) {

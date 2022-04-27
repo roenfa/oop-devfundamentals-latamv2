@@ -14,13 +14,13 @@ public class RevertMovement implements Command {
     }
     @Override
     public void execute() {
-        System.out.println("You have this many movements back" + _optionManager.getListOfMovementsDone().size());
+        System.out.println("You have this many movements back " + _optionManager.getListOfMovementsDone().size());
         System.out.println("How many movements back? ");
         int numberOfMovements=_interfaz.getReader().nextInt();
         IBoard board= _optionManager.getBoard();
         for (int i = 0; i <numberOfMovements ; i++) {
-            int currentVar=board.getFigure()[board.getPosition().get_x()][board.getPosition().get_y()];
-            board.getFigure()[_optionManager.getListOfMovementsDone().peek()[0]][_optionManager.getListOfMovementsDone().peek()[1]]=currentVar;
+            int currentVar=board.getFigure()[_optionManager.getListOfMovementsDone().peek()[0]][_optionManager.getListOfMovementsDone().peek()[1]];
+            board.getFigure()[board.getPosition().get_x()][board.getPosition().get_y()]=currentVar;
             board.posIni(_optionManager.getListOfMovementsDone().peek()[0], _optionManager.getListOfMovementsDone().peek()[1]);
             _optionManager.getListOfMovementsDone().pop();
         }

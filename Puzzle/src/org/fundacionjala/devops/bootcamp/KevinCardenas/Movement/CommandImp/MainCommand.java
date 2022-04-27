@@ -13,12 +13,16 @@ public class MainCommand implements Command {
     }
     @Override
     public void execute() {
-        System.out.println("WELCOME TO THE PUZZLE GAME!!! ");
-        System.out.println("Set the size of the board please");
+        System.out.println("---WELCOME TO THE PUZZLE GAME!!! ");
+        System.out.println("---Set the size of the board please: ");
         int size=_interfaz.getReader().nextInt();
         _optionManager.getBoard().buildBoard(size);
         System.out.println("Set the initial position");
+        System.out.println("From 0 to " + (_optionManager.getBoard().getFigure().length-1));
+        System.out.println("Row = ");
         int x=_interfaz.getReader().nextInt();
+        System.out.println("From 0 to " + (_optionManager.getBoard().getFigure()[0].length-1));
+        System.out.println("Column = ");
         int y=_interfaz.getReader().nextInt();
         int varSwap = _optionManager.getBoard().getFigure()[x][y];
         _optionManager.getBoard().getFigure()[0][0]=varSwap;

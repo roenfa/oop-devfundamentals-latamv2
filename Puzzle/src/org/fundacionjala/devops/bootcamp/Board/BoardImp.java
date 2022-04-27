@@ -6,12 +6,13 @@ import org.fundacionjala.devops.bootcamp.Model.Position;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Board implements IBoard {
+public class BoardImp implements IBoard {
     private int[][] _figure;
     private Position _position;
-    private boolean[][] _figureCheck;
+    private int[][] _figureCheck;
 
-    public Board() {
+    public BoardImp() {
+
         _position=new Position(0,0);
     }
 
@@ -45,13 +46,16 @@ public class Board implements IBoard {
         Double size=Math.sqrt(n);
         int sizevalue=size.intValue();
         _figure = new int[sizevalue][sizevalue];
-        int value=1;
+        _figureCheck=new int[sizevalue][sizevalue];
+        int value=0;
         for (int i = 0; i <_figure.length ; i++) {
             for (int j = 0; j < _figure[0].length; j++) {
                 _figure[i][j]=value;
+                _figureCheck[i][j]=value;
                 value++;
             }
         }
+        posIni(0,0);
     }
     public void suffle(){
         Collections.shuffle(Arrays.asList(_figure));
@@ -69,5 +73,9 @@ public class Board implements IBoard {
         _position.set_y(j);
         _figure[i][j]=0;
 
+    }
+
+    public int[][] getFigureCheck() {
+        return _figureCheck;
     }
 }

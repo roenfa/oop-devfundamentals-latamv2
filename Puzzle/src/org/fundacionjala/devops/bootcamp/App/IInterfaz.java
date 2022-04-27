@@ -1,2 +1,6 @@
-package org.fundacionjala.devops.bootcamp.App;public class IInterfaz {
+package org.fundacionjala.devops.bootcamp.App;
+
+public interface IInterfaz {
+    void menu();
+    FastReader getReader();
 }

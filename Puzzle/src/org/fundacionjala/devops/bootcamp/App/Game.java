@@ -1,40 +1,38 @@
-package org.fundacionjala.devops.bootcamp;
+package org.fundacionjala.devops.bootcamp.App;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.fundacionjala.devops.bootcamp.Board.BoardImp;
+import org.fundacionjala.devops.bootcamp.Interfaz.InterfazImp;
+import org.fundacionjala.devops.bootcamp.Movement.CommandImp.CommandManager;
+import org.fundacionjala.devops.bootcamp.Movement.MenuManager;
+import org.fundacionjala.devops.bootcamp.Movement.OptionManager;
 
 public class Game {
-
+    private MenuManager _menuManager;
+    private IBoard _board;
+    private IInterfaz _interfaz;
+    private CommandManager _commandManager;
+    private IOptionManager _optionManager;
+    public Game(){
+        _menuManager=new MenuManager();
+        _board=new BoardImp();
+        _optionManager= new OptionManager(_board);
+        _interfaz=new InterfazImp(_menuManager);
+        _commandManager= new CommandManager(_optionManager,_interfaz,_menuManager);
+    }
     public void run(){
-        Board board = new Board();
-        FastReader fastReader = new FastReader();
-        System.out.println("Set the size of the board");
-        int var=fastReader.nextInt();
+        initializeCommands();
+        _interfaz.menu();
 
-        board.buildBoard(var);
-        System.out.println("Set the initial position");
-        int x=fastReader.nextInt();
-        int y=fastReader.nextInt();
-        board.posIni(x,y);
-        Movement movement = new Movement(board);
-        board.print();
-        movement.randomMovements(3,0,0);
-        board.print();
-        movement.printListOfMovementsDone();
-//        while(true){
-//            board.print();
-//            movement.printNextMoves();
-//            int move=fastReader.nextInt();
-//            movement.move(move);
-//        }
-//        board.suffle();
-//        movement.nextMoves();
-//        board.print();
-//        movement.printNextMoves();
-
+    }
+    public void initializeCommands(){
+        _menuManager.add("main",_commandManager.findByCode(0),0)
+                .add("UpMovement",_commandManager.findByCode(1),1)
+                .add("RightMovement",_commandManager.findByCode(2),2)
+                .add("DownMovement",_commandManager.findByCode(3),3)
+                .add("LeftMovement",_commandManager.findByCode(4),4)
+                .add("DisarmBoard",_commandManager.findByCode(5),5)
+                .add("RevertMovement",_commandManager.findByCode(6),6)
+                .add("Exit",_commandManager.findByCode(7),7).build();
     }
 
 }

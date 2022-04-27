@@ -1,4 +1,4 @@
-package org.fundacionjala.devops.bootcamp;
+package org.fundacionjala.devops.bootcamp.App;
 
 
 import java.io.BufferedReader;

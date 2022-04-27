@@ -1,24 +1,22 @@
 package org.fundacionjala.devops.bootcamp.Movement;
 
 import org.fundacionjala.devops.bootcamp.App.IBoard;
-import org.fundacionjala.devops.bootcamp.App.IMovementManager;
-import org.fundacionjala.devops.bootcamp.Board.BoardImp;
+import org.fundacionjala.devops.bootcamp.App.IOptionManager;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+import java.util.stream.Stream;
 
-public class MovementManager implements IMovementManager {
+public class OptionManager implements IOptionManager {
     private Map<Integer,int[]> _nextMoves=new HashMap();
     private IBoard _board;
     private Stack<int[]> _listOfMovementsDone;
 
-    public MovementManager(IBoard board) {
+    public OptionManager(IBoard board) {
         _board = board;
         _listOfMovementsDone = new Stack();
-//        int[] listOfMovements= {_board.getPosition().get_x(),_board.getPosition().get_y()};
-//        _listOfMovementsDone.add(listOfMovements);
-//        nextMoves();
     }
     @Override
     public Map<Integer, int[]> getNextMoves() {
@@ -78,6 +76,34 @@ public class MovementManager implements IMovementManager {
         for (int[] var:_listOfMovementsDone) {
             System.out.println(var[0]+" "+var[1]);
         }
+    }
+    @Override
+    public void printOtherOptions(){
+        System.out.println("5 if you want to shuffle the board");
+        System.out.println("6 if you are stuck and want to reset the board");
+    }
+    @Override
+    public void move(int key){
+        int var=_board.getFigure()[_nextMoves.get(key)[0]][_nextMoves.get(key)[1]];
+        _board.getFigure()[_board.getPosition().get_x()][_board.getPosition().get_y()]=var;
+        _board.posIni(_nextMoves.get(key)[0],_nextMoves.get(key)[1]);
+        _board.print();
+        int[] listofMovements={_nextMoves.get(key)[0],_nextMoves.get(key)[1]};
+        _listOfMovementsDone.add(listofMovements);
+        nextMoves();
+        isGameCompleted();
+    }
+    public void isGameCompleted(){
+        if(Arrays.equals(_board.getFigure(),_board.getFigureCheck())){
+            System.out.println("Game is completed you can keep playing or use one of the options!");
+        }
+        for (int i = 0; i < _board.getFigureCheck().length ; i++) {
+            for (int j = 0; j < _board.getFigureCheck()[0].length; j++) {
+                System.out.print(_board.getFigureCheck()[i][j]);
+            }
+
+        }
+
     }
 
 }

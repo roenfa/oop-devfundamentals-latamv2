@@ -44,7 +44,7 @@ public class Puzzle {
             }
             sb.append("\n");
         }
-        System.out.println(sb);
+        Prompt.print(sb.toString());
     }
 
     public static boolean isSolved() {

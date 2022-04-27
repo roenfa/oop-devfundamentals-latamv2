@@ -1,27 +1,8 @@
 package ThirdApproach;
 
-import java.util.Scanner;
-
 import static ThirdApproach.Puzzle.*;
 
 public class Movement {
-
-    public static char getKey() {
-        Scanner scanner = new Scanner(System.in);
-        char key;
-        String tmp;
-        System.out.print("> ");
-        do{
-            tmp = scanner.nextLine().toUpperCase();
-            if(tmp.length() != 1) {
-                key = 'X';
-            } else {
-                key = tmp.charAt(0);
-            }
-        }while(key!='W' && key!='A' && key!='S' && key!='D');
-        System.out.println();
-        return key;
-    }
 
     public static boolean makeMove(char key) {
         int tmp;
@@ -57,5 +38,4 @@ public class Movement {
         }
         return true;
     }
-
 }

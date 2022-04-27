@@ -28,7 +28,7 @@ public class Puzzle {
             makeMove(getKey());
         }
         printPuzzle();
-        System.out.println("Winner! solved in "+slv+" moves." );
+        System.out.println("Winner! Puzzle solved in "+slv+" moves." );
     }
 
     public static boolean isSolved() {
@@ -62,11 +62,11 @@ public class Puzzle {
         System.out.print("> ");
         do{
             tmp = scanner.nextLine().toUpperCase();
-            System.out.print(" ");
             if(tmp.length() != 1) {
                 key = 'X';
+            } else {
+                key = tmp.charAt(0);
             }
-            else key = tmp.charAt(0);
         }while(key!='W' && key!='A' && key!='S' && key!='D');
         System.out.println();
         return key;

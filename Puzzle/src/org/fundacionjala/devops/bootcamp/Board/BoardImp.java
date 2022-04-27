@@ -1,11 +1,15 @@
-package org.fundacionjala.devops.bootcamp;
+package org.fundacionjala.devops.bootcamp.Board;
+
+import org.fundacionjala.devops.bootcamp.App.IBoard;
+import org.fundacionjala.devops.bootcamp.Model.Position;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Board {
+public class Board implements IBoard {
     private int[][] _figure;
     private Position _position;
+    private boolean[][] _figureCheck;
 
     public Board() {
         _position=new Position(0,0);

@@ -20,12 +20,16 @@ public class Game {
         int y=fastReader.nextInt();
         board.posIni(x,y);
         Movement movement = new Movement(board);
-        while(true){
-            board.print();
-            movement.printNextMoves();
-            int move=fastReader.nextInt();
-            movement.move(move);
-        }
+        board.print();
+        movement.randomMovements(3,0,0);
+        board.print();
+        movement.printListOfMovementsDone();
+//        while(true){
+//            board.print();
+//            movement.printNextMoves();
+//            int move=fastReader.nextInt();
+//            movement.move(move);
+//        }
 //        board.suffle();
 //        movement.nextMoves();
 //        board.print();

@@ -17,19 +17,6 @@ public class Game {
 
         play(table, movement);
 
-        //Frame f = new Frame("Demo");
-        //f.setLayout(new FlowLayout());
-        //f.setSize(200, 200);
-        //Label l = new Label();
-        //l.setText("This is a Game");
-        //f.add(l);
-        //f.setVisible(true);
-
-        //adding the key listener
-        //Movement movement= new Movement();
-        //f.addKeyListener(movement);
-
-        //while (movement != ) {}
     }
 
     private void play(Table table, Movement movement) {

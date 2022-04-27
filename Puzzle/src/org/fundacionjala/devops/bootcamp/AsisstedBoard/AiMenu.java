@@ -42,6 +42,7 @@ public class AiMenu {
         System.out.println("Movements options are:");
         System.out.println("NORTH: N, SOUTH: S, EAST: E, WEST: W;");
         System.out.println("Press H to help, or press q to quit");
+        System.out.println("**************************");
         String userChoice = "";
         scanner.nextLine();
         while (!userChoice.equals("q")) {
@@ -51,23 +52,6 @@ public class AiMenu {
             System.out.println("=======================");
             System.out.println("Please enter your move:");
             userChoice = scanner.nextLine();
-            if (userChoice.equals("q")) {
-                System.out.println("=======================");
-                System.out.println("Game Over!!");
-                break;
-            }
-            if (userChoice.equals("H")) {
-                System.out.println("=======================");
-                System.out.println("Movements that where made are:");
-                history.getMovementsOption();
-                System.out.println("How many movements do you want to roll back?");
-                int rollBack = scanner.nextInt();
-                String rollBackMovement = history.rollBack(rollBack);
-                //history.rollBack(rollBack);
-                movement.rollBackBoard(prueba, rollBackMovement);
-                userChoice = "";
-            }
-
             int isValid = movement.moveZero(prueba, userChoice);
             if(isValid==1){
                 history.setMovementsOption(userChoice);
@@ -76,6 +60,22 @@ public class AiMenu {
             System.out.println("Movements made:");
             history.getMovementsOption();
             System.out.println("=======================");
+            if (userChoice.equals("q")) {
+                System.out.println("=======================");
+                System.out.println("Game Over!!");
+                break;
+            }
+            if (userChoice.equals("H")) {
+                //System.out.println("=======================");
+//                System.out.println("Movements that where made are:");
+//                history.getMovementsOption();
+                System.out.println("How many movements do you want to roll back?");
+                int rollBack = scanner.nextInt();
+                String rollBackMovement = history.rollBack(rollBack);
+                //history.rollBack(rollBack);
+                movement.rollBackBoard(prueba, rollBackMovement);
+                userChoice = "";
+            }
         }
     }
 }

@@ -3,18 +3,12 @@ package org.fundacionjala.devops.bootcamp.Basics;
 public class Timer extends Thread{
     private int minutes;
     private int seconds;
-    private int level;
-
-    public Timer(int level){
-        this.level=level-1;
-    }
 
 
+    @Override
     public void run (){
 
-        minutes=level;
-
-        for (int min = level; min > 0; min--) {
+        for (int min = (minutes-1); min > 0; min--) {
             for (int sec = 59; sec > 0; sec--) {
                 seconds = sec;
 //                System.out.println(sec);
@@ -35,5 +29,11 @@ public class Timer extends Thread{
         return seconds;
     }
 
+    public void setMinutes(int minutes) {
+        this.minutes = minutes-1;
+    }
 
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
 }

@@ -2,28 +2,35 @@ package org.fundacionjala.devops.bootcamp.App;
 
 
 import org.fundacionjala.devops.bootcamp.Basics.Movement;
-import org.fundacionjala.devops.bootcamp.Basics.Position;
 import org.fundacionjala.devops.bootcamp.Basics.TableTop;
 import org.fundacionjala.devops.bootcamp.Basics.Timer;
 import org.fundacionjala.devops.bootcamp.GameLogic.DifficultyLevels;
 import org.fundacionjala.devops.bootcamp.GameLogic.Game;
-import org.fundacionjala.devops.bootcamp.Screen.Menu.HomeSOptions;
-import org.fundacionjala.devops.bootcamp.Screen.Menu.HomeScreenFormatI;
-import org.fundacionjala.devops.bootcamp.Screen.ScreenSections;
+import org.fundacionjala.devops.bootcamp.GameLogic.GamePrep;
+import org.fundacionjala.devops.bootcamp.Screen.Menu.ConsoleComponentes.*;
+import org.fundacionjala.devops.bootcamp.Screen.Menu.TextContent.ConsoleConstants;
+import org.fundacionjala.devops.bootcamp.Screen.Menu.TextContent.TextHeaders;
+import org.fundacionjala.devops.bootcamp.Screen.Menu.TextContent.TextOptions;
+import org.fundacionjala.devops.bootcamp.Screen.Menu.Windows.HelpWindow;
+import org.fundacionjala.devops.bootcamp.utils.RandomNumber;
 
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
 
-public class Play extends Thread {
+public class Play {
 
-    static ScreenSections ss = new HomeScreenFormatI();
-    static HomeSOptions menuOptions = new HomeSOptions();
+    static ConsoleConstants menuOptions = new TextOptions();
     static TableTop table;
     static DifficultyLevels Dlevels = new DifficultyLevels();
     static Movement mov;
-
+    static Timer time;
+    static Game game;
+    static ConsoleConstants textHeaders = new TextHeaders();
+    static Indicators indicators;
 
     private static Scanner sc = new Scanner(System.in);
 
@@ -31,88 +38,58 @@ public class Play extends Thread {
     public static void main(String[] args) {
 
         menuOptions.initializeOptions();
+        textHeaders.initializeOptions();
 
         int option=0;
         int option2=0;
-        int optionCounter=1;
 
-        while(option != menuOptions.getOptions().get(0).size()) {
-            System.out.println(ss.print());
 
-            for (String in : menuOptions.getOptions().get(0)) {
-                System.out.println(optionCounter + ". " + in);
-                optionCounter++;
-            }
+        while(option != menuOptions.getIt().get(option).size()) {
+            option2=0;
+
+            textHeaders.getIt().get(0).stream().forEach(System.out::println);
+            menuOptions.getIt().get(0).stream().forEach(System.out::println);
 
             option = sc.nextInt();
 
+            while (option2 != menuOptions.getIt().get(option).size()) {
+                textHeaders.getIt().get(option).stream().forEach(System.out::println);
+                menuOptions.getIt().get(option).stream().forEach(System.out::println);
+                option2= sc.nextInt();
 
-            while (option2 != menuOptions.getOptions().get(option).size()) {
-                for (int in : menuOptions.getOptions().keySet()){
-                    if (option==in){
-                        if(option!=1) {
-                            optionCounter = 1;
-                            System.out.println(ss.print());
-
-                            for (String submenu : menuOptions.getOptions().get(option)) {
-
-                                System.out.println(optionCounter + ". " + submenu);
-                                optionCounter++;
-
-                            }
-
-                            option2 = sc.nextInt();
-
-                            gameManager(option, option2);
-                        }else {
-                            theGame();
-                        }
-                    }
-                }
-
-
+                gameManager(option, option2);
 
             }
-
-
         }
 
     }
 
-    static void gameManager(int option, int option2){
+    static String gameManager(int option, int option2){
 
-
-    }
-
-    static void go(int go){
-        Position zero = new Position(table);
-
-        Map<Integer, int[]> theMove = mov.possibleMoves(zero.getPosition());
-        if(theMove.keySet().contains(go)){
-            mov.move(theMove.get(go));
-        }else {
-            System.out.println("movement not possible");
+        if (option == 1 && option2 == 1){
+            gamePrep();
+        }else if (option == 1 && option2==2){
+            return null;
         }
 
+        return null;
     }
 
-    static void theGame(){
+    static void gamePrep(){
 
+        RandomNumber utils = new RandomNumber();
         Dlevels.initializeLevels();
-        System.out.println(ss.print());
-        System.out.println("Please enter your username: ");
-        sc.nextLine();
-        String username = sc.nextLine();
-        System.out.println("Please select the level:");
 
-        for (int in : Dlevels.getLevels().keySet()){
-            for (Map.Entry<Integer, Integer> at : Dlevels.getLevels().get(in).entrySet()) {
-                System.out.println("Level " + "[" + in + "]" + ":" + at.getKey() + " minutes, " + at.getValue() + " rows and columns.");
-            }
-        }
+        textHeaders.getIt().get(10).stream().forEach(System.out::print);
+        sc.nextLine();
+        String username=sc.nextLine();
+
+
+        textHeaders.getIt().get(11).stream().forEach(System.out::println);
+        Indicators availableLevels = new AvailableLevelsFormat(Dlevels);
+        System.out.println(availableLevels.print());
 
         int optionLevel = sc.nextInt();
-        int optionGame = 0;
         int minutes=0;
         int rows=0;
 
@@ -120,38 +97,76 @@ public class Play extends Thread {
             minutes=in.getKey();
             rows = in.getValue();
         }
-        Timer time = new Timer(minutes);
-        time.start();
-        table = new TableTop(rows,rows);
-        table.initializeTable();
-        table.shuffle();
-        Position zero = new Position(table);
-        mov = new Movement(table, zero);
-        Game game = new Game(table, mov);
 
-        while (optionGame != 6){
+        table = new TableTop(rows, rows);
+        table.setRows(rows);
+        table.setColumns(rows);
+        mov = new Movement(table);
 
-            System.out.println(ss.print());
-            System.out.println("User: " + username +"          "+ "Level: " + optionLevel +"          "+ "Time: "+time.getMinutes()+":"+time.getSeconds()+"          "+"Figures in place: "+game.gameStatus());
-            System.out.println(" ");
-            System.out.println(" ");
-            table.consoleTable();
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.print("Possible moves:   ");
+        textHeaders.getIt().get(12).stream().forEach(System.out::println);
+        System.out.print("x: ");
+        int x= sc.nextInt();
+        System.out.print("y: ");
+        int y = sc.nextInt();
 
-            for (Map.Entry<Integer, int[]> in : mov.possibleMoves(zero.getPosition()).entrySet()){
-                System.out.print(Arrays.toString(in.getValue()) + "     ");
+        int[] zero = new int[2];
+        zero[0]=x;
+        zero[1]=y;
+
+        System.out.print("#Shuffle: ");
+        int sMoves = sc.nextInt();
+
+        game = new Game(table, mov, username);
+
+        table.initialTable(zero);
+
+        mov.setInitialCustomShuffle(sMoves);
+
+        for(int i=0;i<sMoves;i++){
+            Map<Integer, int[]> movesToPlay = mov.possibleMoves(table.getZero());
+            ArrayList<Integer> index = new ArrayList<>();
+            for (Integer in: movesToPlay.keySet()){
+                index.add(in);
             }
+            mov.move(movesToPlay.get(index.get(utils.pickRandomOption(movesToPlay)-1)));
+        }
+        time = new Timer();
+        time.setMinutes(minutes);
+        time.start();
+        start();
+    }
 
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println("1. Up"+"      "+"2. Down"+"      "+"3.Left"+"      "+"4.Right"+"      "+"5. back"+"      "+"6. exit");
+    static void start(){
+
+        indicators = new ComponentsFormat(time, Dlevels, mov, game);
+        Indicators gameOptions = new GameOptionsFormat();
+        HelpWindow hWindow = new HelpWindow(mov);
+
+        int optionGame =0;
+        while (optionGame != 6){
+            textHeaders.getIt().get(13).stream().forEach(System.out::println);
+            System.out.println(indicators.print());
+
+            table.consoleTable();
+
+            System.out.println(gameOptions.print());
+
             optionGame= sc.nextInt();
+            if(optionGame>0 && optionGame<=4){
+                go(optionGame);
+            }else if(optionGame==5){
+                hWindow.hWindow();
+            }
+        }
+    }
 
-            go(optionGame);
+    static void go(int go){
 
+        Map<Integer, int[]> theMove = mov.possibleMoves(table.getZero());
+        if(theMove.keySet().contains(go)){
+            mov.move(theMove.get(go));
+        }else {
+            System.out.println("movement not possible");
         }
 
     }

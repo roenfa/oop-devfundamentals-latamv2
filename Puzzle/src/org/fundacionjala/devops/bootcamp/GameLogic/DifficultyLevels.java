@@ -7,8 +7,7 @@ public class DifficultyLevels {
 
     //level - time - rows
     Map<Integer, Map<Integer, Integer>> levels = new HashMap<>();
-
-
+    int currentLevel;
 
     public void initializeLevels (){
         Map<Integer, Integer> levelZero = new HashMap<>();
@@ -39,5 +38,12 @@ public class DifficultyLevels {
 
     public Map<Integer, Map<Integer, Integer>> getLevels() {
         return levels;
+    }
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

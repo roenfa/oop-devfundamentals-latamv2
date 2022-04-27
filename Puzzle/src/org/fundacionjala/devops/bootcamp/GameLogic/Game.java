@@ -7,10 +7,20 @@ import org.fundacionjala.devops.bootcamp.Basics.TableTop;
 public class Game {
      TableTop table;
      Movement movement;
+     String player;
 
-    public Game(TableTop table, Movement movement){
+    public Game(TableTop table, Movement movement, String player){
         this.table=table;
         this.movement = movement;
+        this.player = player;
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
     public int gameStatus(){
@@ -26,14 +36,10 @@ public class Game {
             }
         }
 
-        if (table.getTable()[table.getRows()-1][table.getColumns()-1]==0){
+        if (table.getTable()[table.getZero()[0]-1][table.getZero()[1]-1]==0){
             correctLocation = correctLocation +1;
         }
 
         return correctLocation;
     }
-
-
-
-
 }

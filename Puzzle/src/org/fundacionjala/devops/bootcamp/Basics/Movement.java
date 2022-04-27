@@ -1,17 +1,17 @@
 package org.fundacionjala.devops.bootcamp.Basics;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 public class Movement {
-    Position position;
     TableTop table;
-    Stack<Map<Integer, int[]>> movementStorage = new Stack<>();
+    int initialCustomShuffle;
+    Stack<int[]> movementStorage = new Stack<>();
 
-    public Movement(TableTop table, Position position){
+    public Movement(TableTop table){
         this.table=table;
-        this.position=position;
     }
 
     public Map<Integer, int[]> possibleMoves(int[]currPos){
@@ -23,8 +23,6 @@ public class Movement {
             int [] up = new int[2];
             up[0]=currPos[0]-1;
             up[1]=currPos[1];
-
-
             moves.put(1, up);
         }
 
@@ -32,7 +30,6 @@ public class Movement {
             int [] down = new int[2];
             down[0]=currPos[0]+1;
             down[1]=currPos[1];
-
             moves.put(2, down);
         }
 
@@ -56,20 +53,34 @@ public class Movement {
 
     public void move(int[] option) {
 
-        Map<Integer, int[]> theMove = new HashMap<>();
-
         int destiny = table.getTable()[option[0]-1][option[1]-1];
-        int [] origin = position.getPosition();
+        int [] origin = table.getZero();
 
         table.getTable()[origin[0]-1][origin[1]-1]=destiny;
         table.getTable()[option[0]-1][option[1]-1]=0;
 
-        theMove.put(destiny, option);
-        theMove.put(0, origin);
+        movementStorage.add(origin);
+
+    }
+    public void undo(int[] option) {
+
+        int destiny = table.getTable()[option[0]-1][option[1]-1];
+        int [] origin = table.getZero();
+
+        table.getTable()[origin[0]-1][origin[1]-1]=destiny;
+        table.getTable()[option[0]-1][option[1]-1]=0;
 
     }
 
-    public Stack<Map<Integer, int[]>> getMovementStorage() {
+    public int getInitialCustomShuffle() {
+        return initialCustomShuffle;
+    }
+
+    public void setInitialCustomShuffle(int initialCustomShuffle) {
+        this.initialCustomShuffle = initialCustomShuffle;
+    }
+
+    public Stack<int[]> getMovementStorage() {
         return movementStorage;
     }
 }

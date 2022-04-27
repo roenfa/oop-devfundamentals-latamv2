@@ -66,13 +66,9 @@ public class AiMenu {
                 break;
             }
             if (userChoice.equals("H")) {
-                //System.out.println("=======================");
-//                System.out.println("Movements that where made are:");
-//                history.getMovementsOption();
                 System.out.println("How many movements do you want to roll back?");
                 int rollBack = scanner.nextInt();
                 String rollBackMovement = history.rollBack(rollBack);
-                //history.rollBack(rollBack);
                 movement.rollBackBoard(prueba, rollBackMovement);
                 userChoice = "";
             }

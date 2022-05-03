@@ -14,6 +14,6 @@ public class App {
         chargeWaterController.chargeCoffeeDecisionsController(numberOfCups);
 
         ProduceCoffeeController produceCoffeeController = new ProduceCoffeeController();
-        produceCoffeeController.produceCoffeeController();
+        produceCoffeeController.produceCoffeeController(numberOfCups);
     }
 }

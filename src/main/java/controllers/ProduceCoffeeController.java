@@ -24,10 +24,10 @@ public class ProduceCoffeeController {
     IUserDecisions userDecisions = new UserFullDecision();
     IBoilerHeater boilerHeater = new BoilerHeaterImpl();
 
-    public void produceCoffeeController(){
+    public void produceCoffeeController(int numberOfCups){
         exitsIfFailsPot();
 
-        exitsIfFailsBoiler();
+        exitsIfFailsBoiler(numberOfCups);
 
         boilerHeater.boilerHeatWater();
 
@@ -40,8 +40,8 @@ public class ProduceCoffeeController {
         lightIndicator.lightsUpWhenCoffeeIsReady();
     }
 
-    public void exitsIfFailsBoiler(){
-        boolean waterIsPresent = userDecisions.defineWaterIsPresent();
+    public void exitsIfFailsBoiler(int numberOfCups){
+        boolean waterIsPresent = userDecisions.defineWaterIsPresent(numberOfCups);
         if(!boilerSensor.isFull(waterIsPresent)){
             System.out.println("The water is discouraged missing.");
             try {sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}

@@ -2,6 +2,7 @@ package services.produceCoffee.impl;
 
 import scanner.IScanner;
 import scanner.ScannerClass;
+import scanner.impl.NumberOfCupsDecisionImpl;
 import scanner.impl.PotIsFullDecisionImpl;
 import scanner.impl.WarmerPlateIsFullDecisionImpl;
 import scanner.impl.WaterIsPresentDecisionImpl;
@@ -29,13 +30,15 @@ public class UserFullDecision implements IUserDecisions {
         return false;
     }
     @Override
-    public boolean defineWaterIsPresent(){
-        WaterIsPresentDecisionImpl waterIsPresentDecision = new WaterIsPresentDecisionImpl();
-        waterIsPresentDecision.add("Please enter if there is enough water present. 1 = Present. 2 = Not Present: ");
-        waterIsPresentDecision.add("You have entered the number: ");
+    public boolean defineWaterIsPresent(int numberOfCups){
+        NumberOfCupsDecisionImpl numberOfCupsDecision = new NumberOfCupsDecisionImpl();
+        numberOfCupsDecision.add("Please enter cups of water to pour between 1 and 12: ");
+        numberOfCupsDecision.add("You have entered the number: ");
         IScanner scanner = new ScannerClass();
-        int numberWaterIsPresent = scanner.askUserIfPotIsFull(waterIsPresentDecision);
-        if(numberWaterIsPresent==1){return true;}
-        return false;
+        int numberOfCupsOfWaterToPour = scanner.askUserForNumberOfCups(numberOfCupsDecision);
+        if(numberOfCupsOfWaterToPour < numberOfCups){
+            return false;
+        }
+        return true;
     }
 }

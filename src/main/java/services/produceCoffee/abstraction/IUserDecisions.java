@@ -3,5 +3,5 @@ package services.produceCoffee.abstraction;
 public interface IUserDecisions {
     boolean defineIfPotIsFull();
     boolean defineWarmerPlateIsFull();
-    boolean defineWaterIsPresent(int numberOfCups);
+    int defineWaterIsPresent();
 }

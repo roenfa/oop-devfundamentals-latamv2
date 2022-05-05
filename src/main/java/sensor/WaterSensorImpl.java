@@ -3,9 +3,9 @@ package sensor;
 public class WaterSensorImpl implements ISensor{
 
     @Override
-    public boolean isFull(boolean isBoilerFull) {
-        this.isBoilerFull = isBoilerFull;
-        return isBoilerFull;
+    public boolean isFull(int amountOfWater, int numberOfCups) {
+        if (amountOfWater<numberOfCups)return false;
+        return true;
     }
 
     private boolean isBoilerFull;

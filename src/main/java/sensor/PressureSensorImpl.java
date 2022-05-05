@@ -1,11 +1,6 @@
 package sensor;
 
-import static java.lang.Thread.sleep;
-
-public class PressureSensorImpl implements ISensor, IPotSensor{
-
-    @Override
-    public boolean isFull(boolean isPotEmpty) {return isPotEmpty;}
+public class PressureSensorImpl implements IPotSensor{
 
     @Override
     public boolean isWarmerPlateFull() {
@@ -24,6 +19,11 @@ public class PressureSensorImpl implements ISensor, IPotSensor{
     @Override
     public void setWarmerPlateFull(boolean warmerPlateFull) {
         isWarmerPlateFull = warmerPlateFull;
+    }
+
+    @Override
+    public boolean isPotFull(boolean potFull) {
+        return potFull;
     }
 
     public boolean isPotEmpty() {

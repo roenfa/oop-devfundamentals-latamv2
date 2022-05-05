@@ -1,20 +1,29 @@
 package services.chargeCoffee.impl;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import scanner.IScanner;
 import scanner.ScannerClass;
-import scanner.impl.NumberOfCupsDecisionImpl;
+import scanner.impl.ScannerClassImpl;
 import services.chargeCoffee.abstraction.IUserChargeCoffeeDecisions;
 
 import static java.lang.Thread.sleep;
 
 public class UserChargeCoffeeImpl implements IUserChargeCoffeeDecisions {
+
+    final Logger ROOT_LOG = Logger.getRootLogger();
+
     @Override
     public int defineNumberOfCups(){
-        NumberOfCupsDecisionImpl numberOfCupsDecision = new NumberOfCupsDecisionImpl();
+        ScannerClassImpl numberOfCupsDecision = new ScannerClassImpl();
         numberOfCupsDecision.add("Please enter the number of cups between 1 and 12: ");
         numberOfCupsDecision.add("You have entered the number: ");
         IScanner scanner = new ScannerClass();
         int numberOfCups = scanner.askUserForNumberOfCups(numberOfCupsDecision);
+
+        PropertyConfigurator.configure("log4j.properties");
+        ROOT_LOG.debug("Decision defineNumberOfCups(): " + numberOfCups);
+
         return numberOfCups;
     }
     @Override

@@ -4,7 +4,7 @@ import interfaces.IBoardBuilder;
 import interfaces.IGamePlay;
 import scanner.IScanner;
 import scanner.ScannerClass;
-import scanner.impl.MenuSizeImpl;
+import scanner.impl.MenuUserDecisionImpl;
 import services.BoardBuilder;
 import services.GamePlay;
 import java.util.*;
@@ -50,7 +50,7 @@ public class InitializeMediumDifficultyCommandImpl extends Command {
 
         IBoardBuilder boardBuilder = new BoardBuilder();
 
-        MenuSizeImpl menuSizeImpl = new MenuSizeImpl();
+        MenuUserDecisionImpl menuSizeImpl = new MenuUserDecisionImpl();
             menuSizeImpl.add("Please enter the size of the board: ");
             menuSizeImpl.add("You have entered the number: ");
         IScanner scanner = new ScannerClass();

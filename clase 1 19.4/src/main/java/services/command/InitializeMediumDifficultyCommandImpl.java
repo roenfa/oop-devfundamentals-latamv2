@@ -51,7 +51,7 @@ public class InitializeMediumDifficultyCommandImpl extends Command {
         IBoardBuilder boardBuilder = new BoardBuilder();
 
         MenuUserDecisionImpl menuSizeImpl = new MenuUserDecisionImpl();
-            menuSizeImpl.add("Please enter the size of the board: ");
+            menuSizeImpl.add("Please enter the size of the board (bigger than 1): ");
             menuSizeImpl.add("You have entered the number: ");
         IScanner scanner = new ScannerClass();
         int number = scanner.askUserForBoardSize(menuSizeImpl);

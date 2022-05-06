@@ -49,7 +49,7 @@ public class ScannerClass implements IScanner{
             }
             number = scanner.nextInt();
 
-        } while (number < 0);
+        } while (number < 2);
 
         String firstPosition = (String) scannerClass.getMenuSet().toArray()[1];
         System.out.print(firstPosition + number + "\n\n");

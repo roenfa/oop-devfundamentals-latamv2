@@ -1,6 +1,7 @@
 package services;
 
 import interfaces.IBoardBuilder;
+import interfaces.IFinder;
 import interfaces.IGamePlay;
 import scanner.IScanner;
 import scanner.ScannerClass;
@@ -10,98 +11,10 @@ import java.util.*;
 public class GamePlay implements IGamePlay {
 
     private IBoardBuilder boardBuilder;
+    private IFinder finder = new FinderClass();
 
     public GamePlay(IBoardBuilder boardBuilder) {
         this.boardBuilder = boardBuilder;
-    }
-
-    // Ejecutar 8vo
-    @Override
-    public Map<Integer, Integer> findZeroPosition(){
-        List<Integer> keys = boardBuilder.putBoardKeysInList();
-        Map<Integer, Integer> positionOfZero = new HashMap<>();
-        int boardSize = (int) Math.round(Math.sqrt(boardBuilder.getBoard().getBoardSize()));
-
-        for (int i = 0; i < keys.size(); i++) {
-            for (int j = 0; j < boardSize; j++) {
-                if(boardBuilder.getBoard().getBoard().get(i).get(j) == 0){
-                    positionOfZero.put(i, j);
-                }
-            }
-        }
-        return positionOfZero;
-    }
-
-    // Ejecutar 9no
-    @Override
-    public Map<Integer, Integer> findNorthPosition(){
-        Map<Integer, Integer> northPosition = new HashMap<>();
-        List<Integer> keys = boardBuilder.putBoardKeysInList();
-        int boardSize = (int) Math.round(Math.sqrt(boardBuilder.getBoard().getBoardSize()));
-
-        for (int i = 0; i < keys.size(); i++) {
-            for (int j = 0; j < boardSize; j++) {
-                if(boardBuilder.getBoard().getBoard().get(i).get(j) == 0){
-                    northPosition.put(i-1, j);
-                }
-            }
-        }
-
-        return northPosition;
-    }
-
-    // Ejecutar 10mo
-    @Override
-    public Map<Integer, Integer> findSouthPosition(){
-        Map<Integer, Integer> southPosition = new HashMap<>();
-        List<Integer> keys = boardBuilder.putBoardKeysInList();
-        int boardSize = (int) Math.round(Math.sqrt(boardBuilder.getBoard().getBoardSize()));
-
-        for (int i = 0; i < keys.size(); i++) {
-            for (int j = 0; j < boardSize; j++) {
-                if(boardBuilder.getBoard().getBoard().get(i).get(j) == 0){
-                    southPosition.put(i+1, j);
-                }
-            }
-        }
-        return southPosition;
-    }
-
-    // Ejecutar 11avo
-    @Override
-    public Map<Integer, Integer> findEastPosition(){
-        Map<Integer, Integer> eastPosition = new HashMap<>();
-        List<Integer> keys = boardBuilder.putBoardKeysInList();
-        int boardSize = (int) Math.round(Math.sqrt(boardBuilder.getBoard().getBoardSize()));
-
-        for (int i = 0; i < keys.size(); i++) {
-            for (int j = 0; j < boardSize; j++) {
-                if(boardBuilder.getBoard().getBoard().get(i).get(j) == 0){
-                    eastPosition.put(i, j+1);
-                }
-            }
-        }
-
-        return eastPosition;
-    }
-
-    // Ejecutar 12avo
-    @Override
-    public Map<Integer, Integer> findWestPosition(){
-
-        Map<Integer, Integer> westPosition = new HashMap<>();
-        List<Integer> keys = boardBuilder.putBoardKeysInList();
-        int boardSize = (int) Math.round(Math.sqrt(boardBuilder.getBoard().getBoardSize()));
-
-        for (int i = 0; i < keys.size(); i++) {
-            for (int j = 0; j < boardSize; j++) {
-                if(boardBuilder.getBoard().getBoard().get(i).get(j) == 0){
-                    westPosition.put(i, j-1);
-                }
-            }
-        }
-
-        return westPosition;
     }
 
     private boolean existsReceivedPosition(Map<Integer, Integer> receivedPosition){
@@ -127,10 +40,10 @@ public class GamePlay implements IGamePlay {
     public Map<Integer, Map<Integer, Integer>> possiblePositionsList(){
         Map<Integer, Map<Integer, Integer>> possiblePositionsList = new TreeMap<>();
 
-        Map<Integer, Integer> northPosition =  findNorthPosition();
-        Map<Integer, Integer> southPosition =  findSouthPosition();
-        Map<Integer, Integer> eastPosition =  findEastPosition();
-        Map<Integer, Integer> westPosition =  findWestPosition();
+        Map<Integer, Integer> northPosition =  finder.findNorthPosition(boardBuilder);
+        Map<Integer, Integer> southPosition =  finder.findSouthPosition(boardBuilder);
+        Map<Integer, Integer> eastPosition =  finder.findEastPosition(boardBuilder);
+        Map<Integer, Integer> westPosition =  finder.findWestPosition(boardBuilder);
 
         boolean northPositionBoolean = existsReceivedPosition(northPosition);
         boolean southPositionBoolean = existsReceivedPosition(southPosition);
@@ -168,7 +81,7 @@ public class GamePlay implements IGamePlay {
     @Override
     public void gameMovement(int decision, List<Integer> decisionsList ){
         int userDecision = decision;
-        Map<Integer, Integer> zeroPosition = findZeroPosition();
+        Map<Integer, Integer> zeroPosition = finder.findZeroPosition(boardBuilder);
         Map<Integer, Map<Integer, Integer>> possiblePositionsList = possiblePositionsList();
         Map<Integer, Integer> auxMap = possiblePositionsList.get(userDecision);
 
@@ -255,7 +168,7 @@ public class GamePlay implements IGamePlay {
     @Override
     public void gameMovementRandomVersion(int decision){
         int userDecision = decision;
-        Map<Integer, Integer> zeroPosition = findZeroPosition();
+        Map<Integer, Integer> zeroPosition = finder.findZeroPosition(boardBuilder);
         Map<Integer, Map<Integer, Integer>> possiblePositionsList = possiblePositionsList();
         Map<Integer, Integer> auxMap = possiblePositionsList.get(userDecision);
 

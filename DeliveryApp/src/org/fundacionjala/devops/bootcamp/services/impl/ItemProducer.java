@@ -18,14 +18,14 @@ public class ItemProducer implements IItemProducer {
     @Override
     public List<Item> createItem(List<Order> order) {
         List<Item> items=new ArrayList<>();
-        for (Order entry: order) {
-            String name=entry.getName();
-            BigDecimal price= entry.getPrice();
-            for (int i = 0; i <entry.getQuantity() ; i++) {
-                Item item= new Item(name,price);
-                items.add(item);
-            }
-        }
+//        for (Order entry: order) {
+//            String name=entry.getName();
+//            BigDecimal price= entry.getPrice();
+//            for (int i = 0; i <entry.getQuantity() ; i++) {
+//                Item item= new Item(name,price);
+//                items.add(item);
+//            }
+//        }
         return items;
     }
 

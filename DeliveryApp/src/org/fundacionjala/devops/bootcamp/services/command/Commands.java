@@ -1,6 +1,6 @@
 package org.fundacionjala.devops.bootcamp.services.command;
 
-public interface ICommand {
+public interface Commands {
     void execute();
     int getCommandCode();
 }

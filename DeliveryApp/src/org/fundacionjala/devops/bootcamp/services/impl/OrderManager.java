@@ -19,7 +19,7 @@ public class OrderManager implements IOrderManager {
     }
     @Override
     public OrderManager addInformation(String name, BigDecimal price, int quantity){
-        listOfOrders.add(new Order(name,price,quantity));
+//        listOfOrders.add(new Order(name,price,quantity));
         return this;
     }
     @Override

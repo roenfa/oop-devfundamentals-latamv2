@@ -1,13 +1,11 @@
 package org.fundacionjala.devops.bootcamp;
 
 import org.fundacionjala.devops.bootcamp.controllers.AppController;
-import org.fundacionjala.devops.bootcamp.services.command.commandsImpl.CreateOrderCommandImpl;
-
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
         AppController appController = new AppController();
         appController.chooseCommand();
 
@@ -32,4 +30,7 @@ public class Main {
 //        app.generateOrder(option, optionDetail, qty);
 //        app.showOrder();
     }
+
+
+
 }

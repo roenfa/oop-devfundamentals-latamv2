@@ -3,17 +3,30 @@ package org.fundacionjala.devops.bootcamp.model;
 import java.math.BigDecimal;
 
 public class Item {
-
     private String name;
+    private String detail;
     private BigDecimal price;
 
-    public Item(String name, BigDecimal price) {
-        this.name = name;
+    public Item(String name, String detail, BigDecimal price) {
+        this.name=name;
+        this.detail = detail;
         this.price = price;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public BigDecimal getPrice() {
@@ -26,9 +39,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "name = '" + name + '\'' +
-                ", price = " + price +
-                '}';
+        return
+                name + ": " + detail + ", price = $" + price ;
     }
 }

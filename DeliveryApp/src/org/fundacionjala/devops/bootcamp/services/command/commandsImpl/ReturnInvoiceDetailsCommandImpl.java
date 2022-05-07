@@ -14,9 +14,9 @@ public class ReturnInvoiceDetailsCommandImpl {
     }
 
     IInvoiceDetails invoiceDetails = new InvoiceDetails();
-    public void printInvoiceDetails(List<Item> listOfItems){
-        String invoiceCreate = invoiceDetails.createInvoice(listOfItems);
-        invoiceDetails.deliveryInvoice(invoiceCreate);
-    }
+//    public void printInvoiceDetails(List<Item> listOfItems){
+//        String invoiceCreate = invoiceDetails.createInvoice(listOfItems);
+//        invoiceDetails.deliveryInvoice(invoiceCreate);
+//    }
 
 }

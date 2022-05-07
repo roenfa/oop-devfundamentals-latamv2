@@ -1,11 +1,8 @@
 package org.fundacionjala.devops.bootcamp.services.command;
 
-import org.fundacionjala.devops.bootcamp.model.Order;
 import org.fundacionjala.devops.bootcamp.scanner.impl.MenuCard;
 import org.fundacionjala.devops.bootcamp.services.abstraction.IOrderManager;
-import org.fundacionjala.devops.bootcamp.services.command.commandsImpl.MakeOrderCommandImpl;
-import org.fundacionjala.devops.bootcamp.services.command.commandsImpl.PrincipalMenuCommandImpl;
-import org.fundacionjala.devops.bootcamp.services.command.commandsImpl.PrintMenuCommandImpl;
+import org.fundacionjala.devops.bootcamp.services.command.commandsImpl.*;
 import org.fundacionjala.devops.bootcamp.services.impl.UserOptions;
 
 import java.util.ArrayList;
@@ -32,6 +29,8 @@ public class CommandManager {
         commandsList.add(new PrincipalMenuCommandImpl(userOptions));
         commandsList.add(new PrintMenuCommandImpl(menu));
         commandsList.add(new MakeOrderCommandImpl(userOptions,menu,orderManager));
+        commandsList.add(new PrintInvoiceDetailsCommandImpl(orderManager));
+        commandsList.add(new ExitCommandImpl());
 
     }
 

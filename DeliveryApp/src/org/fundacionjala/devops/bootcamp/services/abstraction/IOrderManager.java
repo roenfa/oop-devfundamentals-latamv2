@@ -10,4 +10,7 @@ public interface IOrderManager {
     List<Order> getListOfOrders();
     OrderManager addInformation(String name, BigDecimal price, int quantity);
     List<Order> build();
+    int getOrderID();
+    void setOrderID(int orderID);
+    void clearOrder();
 }

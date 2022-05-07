@@ -81,7 +81,8 @@ public class AppController {
         userOptions.addOptionToUser(0, "Welcome to DeliveryApp");
         userOptions.addOptionToUser(0, "1. Check the menu");
         userOptions.addOptionToUser(0, "2. Make an order");
-        userOptions.addOptionToUser(0, "3. Exit");
+        userOptions.addOptionToUser(0, "3. Print Invoice Details");
+        userOptions.addOptionToUser(0, "4. Exit");
 
         userOptions.addOptionToUser(1, "Please make an order");
 //        userOptions.addOptionToUser(1, "1. Hamburger");

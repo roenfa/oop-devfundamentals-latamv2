@@ -26,23 +26,19 @@ public class AppController {
 
         while (option != (manager.getCommandsList().size()+1)){
 
+            if(option==0){
+                    Commands one = manager.findByCode(0);
+                    one.execute();
+            }
+
+            if(option>0){
                 Commands one = manager.findByCode(option);
                 one.execute();
+                manager.findByCode(0).execute();
+            }
 
             option = in.nextInt();
 
-
-
-//            CreateOrderCommandImpl createOrderCommand = new CreateOrderCommandImpl();
-//
-//            IDeliveryManager deliveryManager = createOrderCommand.createOrders();
-//
-//            ProduceItemCommandImpl produceItemCommand = new ProduceItemCommandImpl();
-//
-//            List<Item> listOfItems= produceItemCommand.produceItems((DeliveryManager) deliveryManager);
-//
-//            ReturnInvoiceDetailsCommandImpl returnInvoiceDetailsCommand = new ReturnInvoiceDetailsCommandImpl();
-//            returnInvoiceDetailsCommand.printInvoiceDetails(listOfItems);
         }
     }
 

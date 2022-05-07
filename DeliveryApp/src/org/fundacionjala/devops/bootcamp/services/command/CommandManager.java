@@ -28,7 +28,7 @@ public class CommandManager {
     public void addCommand(){
         commandsList.add(new PrincipalMenuCommandImpl(userOptions));
         commandsList.add(new PrintMenuCommandImpl(menu));
-        commandsList.add(new MakeOrderCommandImpl(userOptions));
+        commandsList.add(new MakeOrderCommandImpl(userOptions, menu));
 
     }
 

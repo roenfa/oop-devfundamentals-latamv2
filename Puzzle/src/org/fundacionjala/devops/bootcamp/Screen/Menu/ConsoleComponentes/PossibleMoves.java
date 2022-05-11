@@ -1,10 +1,11 @@
 package org.fundacionjala.devops.bootcamp.Screen.Menu.ConsoleComponentes;
 
+// remove
 import org.fundacionjala.devops.bootcamp.Basics.Movement;
 import org.fundacionjala.devops.bootcamp.Basics.TableTop;
 
+// MovementsPrinterComponent?? is much better that name I think so...
 abstract class PossibleMoves implements Indicators{
-
 
     @Override
     public String print() {

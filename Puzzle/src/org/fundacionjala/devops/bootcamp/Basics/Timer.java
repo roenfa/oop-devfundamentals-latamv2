@@ -1,9 +1,8 @@
 package org.fundacionjala.devops.bootcamp.Basics;
 
-public class Timer extends Thread{
+public class Timer extends Thread {
     private int minutes;
     private int seconds;
-
 
     @Override
     public void run (){
@@ -11,6 +10,7 @@ public class Timer extends Thread{
         for (int min = (minutes-1); min > 0; min--) {
             for (int sec = 59; sec > 0; sec--) {
                 seconds = sec;
+                // remove commented code
 //                System.out.println(sec);
                 try {
                     Thread.sleep(1000);
@@ -21,6 +21,7 @@ public class Timer extends Thread{
             minutes = min;
         }
     }
+    // use this. is much better (like in setters methods)
     public int getMinutes() {
         return minutes;
     }
@@ -33,6 +34,7 @@ public class Timer extends Thread{
         this.minutes = minutes-1;
     }
 
+    // remove this function if is not needed anymore
     public void setSeconds(int seconds) {
         this.seconds = seconds;
     }

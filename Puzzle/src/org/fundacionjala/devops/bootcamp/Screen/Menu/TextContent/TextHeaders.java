@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class TextHeaders implements ConsoleConstants {
 
+    //use access modifiers
     Map<Integer, List<String>> menuHeaders = new HashMap<>();
 
 
@@ -54,10 +55,6 @@ public class TextHeaders implements ConsoleConstants {
         six.add("                                 PUZZElZILLA");
         six.add("=================================================================================");
         menuHeaders.put(13, six);
-
-
-
-
     }
 
     @Override
@@ -70,6 +67,7 @@ public class TextHeaders implements ConsoleConstants {
         }
     }
 
+    //use this.menu...
     @Override
     public void addOption(int layer, String option) {
         menuHeaders.get(layer).add(option);

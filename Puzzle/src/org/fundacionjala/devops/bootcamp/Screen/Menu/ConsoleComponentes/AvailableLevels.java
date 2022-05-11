@@ -1,10 +1,9 @@
+// ConsoleComponents right?? no Componentes...
 package org.fundacionjala.devops.bootcamp.Screen.Menu.ConsoleComponentes;
 
 import java.util.Map;
 
-abstract class AvailableLevels implements Indicators{
-
-
+abstract class AvailableLevels implements Indicators {
 
     @Override
     public String print() {
@@ -22,5 +21,4 @@ abstract class AvailableLevels implements Indicators{
     }
 
     protected abstract Map<Integer, Map<Integer, Integer>> printLevels();
-
 }

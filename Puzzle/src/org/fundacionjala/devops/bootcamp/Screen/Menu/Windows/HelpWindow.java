@@ -5,6 +5,7 @@ import org.fundacionjala.devops.bootcamp.Basics.Movement;
 import java.util.Arrays;
 import java.util.Scanner;
 
+// HelperWindow?
 public class HelpWindow {
     Movement mov;
 

@@ -1,7 +1,7 @@
 package org.fundacionjala.devops.bootcamp.utils;
 
 import java.util.Map;
-
+// I thinks this class should be abstract...
 public class RandomNumber {
 
     public int pickRandomOption( Map<Integer, int[]> movesToPlay){

@@ -1,5 +1,7 @@
 package org.fundacionjala.devops.bootcamp.Screen.Menu.ConsoleComponentes;
 
+// GameMenuOptions? much better?
+// I think this class should be abstract... I think so...
 public class GameOptionsFormat extends GameOptions{
     @Override
     protected String printSpace() {

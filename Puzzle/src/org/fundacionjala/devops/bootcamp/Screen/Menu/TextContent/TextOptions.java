@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TextOptions implements ConsoleConstants {
+    //access modifiers
     Map<Integer, List<String>> options = new HashMap<>();
 
     @Override
@@ -31,6 +32,8 @@ public class TextOptions implements ConsoleConstants {
             options.put(layer, empty);
         }
     }
+
+    //use this.
     @Override
     public void addOption (int layer, String option){
         options.get(layer).add(option);

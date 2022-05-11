@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
+// Is it needed? if not remove this class
 public class GamePrep {
     ConsoleConstants textHeaders;
     DifficultyLevels dL;
@@ -32,14 +33,4 @@ public class GamePrep {
         this.game=game;
         this.time = time;
     }
-
-
-
-    public void getUser (){
-
-    }
-
-
-
-
 }

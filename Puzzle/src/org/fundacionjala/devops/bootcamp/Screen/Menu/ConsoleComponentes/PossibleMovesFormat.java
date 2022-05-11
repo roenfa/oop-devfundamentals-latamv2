@@ -5,6 +5,7 @@ import org.fundacionjala.devops.bootcamp.Basics.TableTop;
 
 import java.util.Map;
 
+// looks like there is not reference to this class, so I think is not needed, could you please remove it?
 public class PossibleMovesFormat extends PossibleMoves {
 
     Movement mov;
@@ -26,6 +27,7 @@ public class PossibleMovesFormat extends PossibleMoves {
     }
 
     @Override
+    // printPossibleUpMovements??
     protected String printPossibleMoveOne() {
         for (Map.Entry<Integer, int[]> in : mov.possibleMoves(table.getZero()).entrySet()){
             if(in.getKey()==1){
